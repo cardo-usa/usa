@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@usa/tsconfig/tsconfig.nextjs.json",
+  "compilerOptions": {
+    "baseUrl": "./"
+  },
+  "include": ["./*.*js", "./*.*ts", "./**/*.*ts", "./**/*.*tsx"],
+  "exclude": ["**/node_modules/**/*"]
+}

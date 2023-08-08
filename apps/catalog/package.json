@@ -1,0 +1,53 @@
+{
+  "name": "@usa/catalog",
+  "version": "0.1.0",
+  "repository": "https://github.com/cardo-usa/usa.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "module": "nodenext",
+  "scripts": {
+    "lint": "eslint './**/{*.*js,*.*ts,*.*tsx}'",
+    "lint:fix": "eslint './**/{*.*js,*.*ts,*.*tsx}' --fix",
+    "fmt": "prettier --check .",
+    "fmt:fix": "prettier --write .",
+    "style": "stylelint ./{,.}**/*.{css,scss}",
+    "style:fix": "stylelint ./{,.}**/*.{css,scss} --fix",
+    "test": "jest --silent=false --verbose false --passWithNoTests",
+    "sb": "storybook dev --port 6006",
+    "sb:build": "storybook build -o ./.storybook/static",
+    "chromatic": "pnpx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+  },
+  "dependencies": {
+    "@usa/core": "workspace:*",
+    "@usa/design-token": "workspace:*",
+    "@usa/tailwind": "workspace:*",
+    "clsx": "2.0.0",
+    "dotenv": "16.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "4.10.1",
+    "tailwind-merge": "1.14.0",
+    "tailwind-variants": "0.1.13",
+    "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "7.2.1",
+    "@storybook/addon-essentials": "7.2.1",
+    "@storybook/addon-styling": "1.3.5",
+    "@storybook/addon-viewport": "7.2.1",
+    "@storybook/nextjs": "7.2.1",
+    "@storybook/react": "7.2.1",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "@usa/jest": "workspace:*",
+    "@usa/postcss": "workspace:*",
+    "@usa/prettier": "workspace:*",
+    "@usa/stylelint": "workspace:*",
+    "@usa/tsconfig": "workspace:*",
+    "chromatic": "6.20.0",
+    "eslint-config-usa-nextjs": "workspace:*",
+    "postcss": "8.4.27",
+    "storybook": "7.2.1"
+  }
+}

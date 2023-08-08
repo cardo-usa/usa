@@ -1,0 +1,264 @@
+name: app test
+
+on: push
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      app: ${{ steps.changes.outputs.app }}
+      website: ${{ steps.changes.outputs.website }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: check for file changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          token: ${{ github.token }}
+          filters: .github/filter.yaml
+
+  install:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: needs.filter.outputs.app == 'true'
+    outputs:
+      STORE_PATH: ${{ steps.pnpm-env.outputs.STORE_PATH }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: false
+
+      - name: setup pnpm environment variable
+        id: pnpm-env
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-env.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+  format:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: format
+        run: pnpm turbo run fmt
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: lint
+        run: pnpm turbo run lint -- --max-warnings=0
+
+  style-lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: style lint
+        run: pnpm turbo run style -- --max-warnings=0
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: build
+        run: pnpm turbo run build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [install, build]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: test
+        run: pnpm turbo run test
+
+  deploy-chromatic:
+    runs-on: ubuntu-latest
+    needs: [filter, install]
+    if: needs.filter.outputs.website == 'true'
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: publish
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/catalog/
+          buildScriptName: sb:build
+
+  app-test-check:
+    runs-on: ubuntu-latest
+    needs: [format, lint, style-lint, build, test, deploy-chromatic]
+    if: ${{ ! failure() }}
+    steps:
+      - name: check
+        run: echo "test is successfully executed."

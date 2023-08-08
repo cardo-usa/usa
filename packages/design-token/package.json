@@ -1,0 +1,22 @@
+{
+  "name": "@usa/design-token",
+  "version": "0.1.0",
+  "repository": "https://github.com/cardo-usa/usa.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint './**/{*.*js,*.*ts}'",
+    "lint:fix": "eslint './**/{*.*js,*.*ts}' --fix",
+    "fmt": "prettier --check .",
+    "fmt:fix": "prettier --write .",
+    "test": "jest --silent=false --verbose false --passWithNoTests"
+  },
+  "devDependencies": {
+    "@usa/jest": "workspace:*",
+    "@usa/prettier": "workspace:*",
+    "@usa/stylelint": "workspace:*",
+    "@usa/tsconfig": "workspace:*",
+    "eslint-config-usa-esm": "workspace:*"
+  }
+}

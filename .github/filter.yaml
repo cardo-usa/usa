@@ -1,0 +1,19 @@
+app:
+  - .github/filter.yaml
+  - .github/workflows/app-*.yaml
+  - apps/**/*
+  - packages/**/*
+  - .npmrc
+  - package.json
+  - pnpm-workspace.yaml
+  - turbo.json
+
+website:
+  - .github/filter.yaml
+  - .github/workflows/website-*.yaml
+  - apps/website/**/*
+  - packages/**/*
+  - .npmrc
+  - package.json
+  - pnpm-workspace.yaml
+  - turbo.json
