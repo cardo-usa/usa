@@ -1,6 +1,15 @@
+<!-- markdownlint-disable MD033 -->
+
 # USA
 
 A new table card game inspired by [UNO](<https://en.wikipedia.org/wiki/Uno_(card_game)>) that can be played on the web.
+
+## Core Contributors
+
+|                                           shio                                            |                                        koutyuke!!                                         |
+| :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+| [<img src="https://github.com/dino3616.png" width="160px">](https://github.com/dino3616/) | [<img src="https://github.com/koutyuke.png" width="160px">](https://github.com/koutyuke/) |
+|                         `#repository-owner` `#backend-developer`                          |                             `#designer` `#frontend-developer`                             |
 
 ## Setup
 
@@ -19,6 +28,11 @@ docker compose -f "./docker/docker-compose.development.yml" -p "usa" up -d
 ### set env variables
 
 See `.env.example` for more details.
+
+## Contributing
+
+~~See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details. (Japanese only)~~  
+Now writing.
 
 ## Design
 
