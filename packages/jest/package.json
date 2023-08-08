@@ -1,0 +1,24 @@
+{
+  "name": "@usa/jest",
+  "version": "0.1.0",
+  "repository": "https://github.com/cardo-usa/usa.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint './**/{*.*js,*.*ts}'",
+    "lint:fix": "eslint './**/{*.*js,*.*ts}' --fix",
+    "fmt": "prettier --check .",
+    "fmt:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.3",
+    "@usa/prettier": "workspace:*",
+    "@usa/tsconfig": "workspace:*",
+    "eslint-config-usa-esm": "workspace:*",
+    "jest": "29.6.2",
+    "jest-environment-jsdom": "29.6.2",
+    "next": "13.4.12",
+    "ts-jest": "29.1.1"
+  }
+}

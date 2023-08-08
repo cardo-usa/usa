@@ -1,0 +1,16 @@
+{
+  "name": "eslint-config-usa-esm",
+  "version": "0.1.0",
+  "repository": "https://github.com/cardo-usa/usa.git",
+  "license": "MIT",
+  "private": true,
+  "main": "index.cjs",
+  "type": "commonjs",
+  "scripts": {
+    "lint": "eslint './**/*.*js'",
+    "lint:fix": "eslint './**/*.*js' --fix"
+  },
+  "devDependencies": {
+    "eslint-config-usa-base": "workspace:*"
+  }
+}

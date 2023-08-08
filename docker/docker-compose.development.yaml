@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    image: ghcr.io/cardo-usa/usa:latest
+    container_name: usa-app
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.development
+    volumes:
+      - type: bind
+        source: ../
+        target: /workspaces/usa/
+      - type: volume
+        source: pnpm-store
+        target: /workspaces/usa/.pnpm-store/
+    tty: true
+
+volumes:
+  pnpm-store:
+    driver: local

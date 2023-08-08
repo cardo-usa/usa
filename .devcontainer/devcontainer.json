@@ -1,0 +1,35 @@
+{
+  "name": "usa",
+  "workspaceFolder": "/workspaces/usa/",
+  "dockerComposeFile": ["../docker/docker-compose.development.yaml"],
+  "service": "app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "adam-bender.commit-message-editor",
+        "bierner.color-info",
+        "bradlc.vscode-tailwindcss",
+        "christian-kohler.path-intellisense",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "ecmel.vscode-html-css",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-complete-tag",
+        "github.copilot",
+        "gruntfuggly.todo-tree",
+        "hbenl.vscode-test-explorer",
+        "mikestead.dotenv",
+        "orta.vscode-jest",
+        "pkief.material-icon-theme",
+        "stylelint.vscode-stylelint",
+        "usernamehw.errorlens",
+        "vincaslt.highlight-matching-tag",
+        "visualstudioexptteam.vscodeintellicode",
+        "wix.vscode-import-cost",
+        "wmaurer.change-case",
+        "yoavbls.pretty-ts-errors"
+      ]
+    }
+  }
+}
