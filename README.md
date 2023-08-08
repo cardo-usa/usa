@@ -31,8 +31,7 @@ See `.env.example` for more details.
 
 ## Contributing
 
-~~See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details. (Japanese only)~~  
-Now writing.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more details. (Japanese only)
 
 ## Design
 
