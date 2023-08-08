@@ -1,25 +1,6 @@
-<!-- markdownlint-disable MD033 MD041 -->
+# USA
 
-<div align="center">
-  <img src="./doc/favicon.png" width="256px" />
-</div>
-
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=ts,nextjs,react,tailwind,nestjs,prisma,mongodb,jest,graphql,docker,vscode,githubactions" />
-  </a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-orange" />
-  <img src="https://img.shields.io/badge/codespaces-available-brightgreen" />
-  <img src="https://img.shields.io/badge/gitpod-available-brightgreen" />
-  <img src="https://img.shields.io/badge/ghcr-available-brightgreen" />
-</p>
-
-# usa
-
-The portfolio site of usa, creator for creators.
+A new table card game inspired by [UNO](<https://en.wikipedia.org/wiki/Uno_(card_game)>) that can be played on the web.
 
 ## Setup
 
@@ -41,9 +22,9 @@ See `.env.example` for more details.
 
 ## Design
 
-- [Figma](https://www.figma.com/file/wIpzL4L6xxDhB7TGejMBBk/usa.studio?type=design&node-id=0%3A1&t=NCMus2qNahWHhVM7-1)
+- [Figma](https://www.figma.com/file/IBZGuamzi4SCkJmBilRjqc/usa?type=design&node-id=1%3A5&mode=design&t=e5ZEfFQp0M8U1pcI-1)
 
 ## Component Catalog
 
-- [Storybook](https://main--638d5245f83a0dc73205cd8e.chromatic.com)
-- [Chromatic](https://www.chromatic.com/library?appId=638d5245f83a0dc73205cd8e&branch=main)
+- [Storybook](https://main--64d202068b423722b909f8ed.chromatic.com)
+- [Chromatic](https://www.chromatic.com/library?appId=64d202068b423722b909f8ed&branch=main)
