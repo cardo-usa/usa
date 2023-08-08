@@ -2,7 +2,6 @@ version: "3.8"
 
 services:
   app:
-    image: ghcr.io/cardo-usa/usa:latest
     container_name: usa-app
     build:
       context: ../
