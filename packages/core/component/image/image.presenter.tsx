@@ -4,6 +4,8 @@ import { forwardRef } from 'react';
 
 type ImageProps = ComponentPropsWithRef<typeof NextImage>;
 
-export const Image = forwardRef<ElementRef<typeof NextImage>, Omit<ImageProps, 'ref'>>((props, ref) => <NextImage ref={ref} {...props} />);
+export const Image = forwardRef<ElementRef<typeof NextImage>, Omit<ImageProps, 'ref'>>(({ priority, ...props }, ref) => (
+  <NextImage ref={ref} placeholder={priority ? undefined : 'blur'} {...props} />
+));
 
 Image.displayName = 'Image';
