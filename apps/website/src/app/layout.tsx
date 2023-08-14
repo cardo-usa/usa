@@ -13,7 +13,7 @@ type RootLayoutProps = {
 };
 
 const RootLayout = ({ children }: RootLayoutProps): ReactNode => (
-  <html lang="en" suppressHydrationWarning>
+  <html lang="ja" suppressHydrationWarning>
     <head />
     <body className={cn(fontFamily, 'bg-tomato-1 font-sans')}>
       <ThemeProvider attribute="data-theme" enableSystem defaultTheme="system">
