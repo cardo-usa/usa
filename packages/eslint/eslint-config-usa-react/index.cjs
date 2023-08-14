@@ -81,6 +81,12 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
   },
+  settings: {
+    tailwindcss: {
+      callees: ["cn", "tv"],
+      classRegex: "^(class|className|outsideClass)$",
+    },
+  },
   overrides: [
     {
       files: ["./*"],
