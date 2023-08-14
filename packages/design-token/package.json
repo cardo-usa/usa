@@ -17,6 +17,7 @@
     "@usa/prettier": "workspace:*",
     "@usa/stylelint": "workspace:*",
     "@usa/tsconfig": "workspace:*",
+    "@usa/type": "workspace:*",
     "eslint-config-usa-esm": "workspace:*"
   }
 }

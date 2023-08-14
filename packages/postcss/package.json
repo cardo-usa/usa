@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@usa/prettier": "workspace:*",
-    "autoprefixer": "10.4.14",
+    "autoprefixer": "10.4.15",
     "eslint-config-usa-base": "workspace:*",
     "postcss": "8.4.27",
     "postcss-import": "15.1.0",

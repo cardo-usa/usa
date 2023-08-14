@@ -10,11 +10,10 @@
   },
   "packageManager": "pnpm@8.6.12",
   "volta": {
-    "node": "18.17.0",
+    "node": "18.17.1",
     "pnpm": "8.6.12"
   },
   "scripts": {
-    "asset:optimize": "pnpm optimizt",
     "prepare": "husky install",
     "all": "pnpm --filter @usa/*",
     "api": "pnpm --filter @usa/api",
@@ -22,13 +21,14 @@
     "website": "pnpm --filter @usa/website"
   },
   "devDependencies": {
+    "@types/eslint": "8.44.2",
     "@types/jest": "29.5.3",
-    "@types/node": "20.4.9",
+    "@types/node": "20.4.10",
     "cross-env": "7.0.3",
-    "eslint": "8.46.0",
+    "eslint": "8.47.0",
     "husky": "8.0.3",
     "jest": "29.6.2",
-    "lint-staged": "13.2.3",
+    "lint-staged": "13.3.0",
     "prettier": "3.0.1",
     "rimraf": "5.0.1",
     "stylelint": "15.10.2",
@@ -39,7 +39,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "esbuild-register@3.4.2": "patches/esbuild-register@3.4.2.patch"
+      "esbuild-register@3.4.2": "patches/esbuild-register@3.4.2.patch",
+      "tailwind-variants@0.1.13": "patches/tailwind-variants@0.1.13.patch"
     }
   }
 }
