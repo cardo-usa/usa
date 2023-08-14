@@ -15,10 +15,10 @@ type RootLayoutProps = {
 const RootLayout = ({ children }: RootLayoutProps): ReactNode => (
   <html lang="en" suppressHydrationWarning>
     <head />
-    <body className={cn(fontFamily, 'font-sans')}>
+    <body className={cn(fontFamily, 'bg-tomato-1 font-sans')}>
       <ThemeProvider attribute="data-theme" enableSystem defaultTheme="system">
         <PageTransitionAnimationProvider>
-          <main>{children}</main>
+          <main className="min-h-screen">{children}</main>
         </PageTransitionAnimationProvider>
       </ThemeProvider>
     </body>
@@ -48,8 +48,8 @@ export const generateMetadata = (): Metadata => {
       card: 'summary_large_image',
     },
     themeColor: [
-      { media: '(prefers-color-scheme: light)', color: colors.light.purple['7'] },
-      { media: '(prefers-color-scheme: dark)', color: colors.dark.purple['7'] },
+      { media: '(prefers-color-scheme: light)', color: colors.light.tomato['7'] },
+      { media: '(prefers-color-scheme: dark)', color: colors.dark.tomato['7'] },
     ],
   };
 };
