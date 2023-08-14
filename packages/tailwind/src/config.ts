@@ -9,7 +9,8 @@ const defaultConfig: Config = {
   theme: {
     colors,
     fontFamily: {
-      sans: [fonts['noto-sans'].variable, ...defaultTheme.fontFamily.sans],
+      sans: [fonts['m-plus-rounded-1c'].variable, ...defaultTheme.fontFamily.sans],
+      chango: [fonts.chango.variable, ...defaultTheme.fontFamily.sans],
     },
     screens: {
       mobile: `${breakpoints.mobile.minWidth}px`,

@@ -54,21 +54,24 @@ export const colors = {
   },
 };
 
-type Fonts = DeepReadonly<
-  Record<
-    string,
-    {
-      weight: string[];
-      subsets: string[];
-      variable: `--${string}`;
-    }
-  >
+type Fonts = Record<
+  string,
+  {
+    weight: string[];
+    subsets: string[];
+    variable: `--${string}`;
+  }
 >;
 
 export const fonts = {
-  'noto-sans': {
+  chango: {
+    weight: ['400'],
+    subsets: ['latin'],
+    variable: '--chango',
+  },
+  'm-plus-rounded-1c': {
     weight: ['400', '700'],
     subsets: ['latin'],
-    variable: '--noto-sans',
+    variable: '--m-plus-rounded-1c',
   },
-} as const satisfies Fonts;
+} as const satisfies DeepReadonly<Fonts>;

@@ -1,12 +1,18 @@
 import type { fonts } from '@usa/design-token';
-import { Noto_Sans } from 'next/font/google';
+import { Chango, M_PLUS_Rounded_1c } from 'next/font/google';
 
 // HACK: Since SWC forces argument properties to be written in literals, fonts cannot be used interchangeably.
 // Therefore, the consistency of variable is only ensured by generics.
-const notoSans = Noto_Sans<(typeof fonts)['noto-sans']['variable']>({
-  weight: ['400', '700'],
+const chango = Chango<(typeof fonts)['chango']['variable']>({
+  weight: ['400'],
   subsets: ['latin'],
-  variable: '--noto-sans',
+  variable: '--chango',
 });
 
-export const fontFamily = [notoSans].map((font) => font.variable).join(' ');
+const mPlusRounded1c = M_PLUS_Rounded_1c<(typeof fonts)['m-plus-rounded-1c']['variable']>({
+  weight: ['400', '800'],
+  subsets: ['latin'],
+  variable: '--m-plus-rounded-1c',
+});
+
+export const fontFamily = [chango, mPlusRounded1c].map((font) => font.variable).join(' ');
