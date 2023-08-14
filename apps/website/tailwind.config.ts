@@ -1,10 +1,10 @@
-import { config as coreConfig } from '@usa/tailwind';
+import { createConfig } from '@usa/tailwind';
 
-const config: typeof coreConfig = {
-  ...coreConfig,
+const config = createConfig((defaultConfig) => ({
+  ...defaultConfig,
   mode: 'jit',
-  content: ['./src/**/*.{ts,tsx}'],
+  content: ['./src/**/*.{ts,tsx}', '../../packages/**/*.{ts,tsx}'],
   darkMode: ['class', '[data-theme="dark"]'],
-};
+}));
 
 export default config;
