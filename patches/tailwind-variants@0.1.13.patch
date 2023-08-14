@@ -1,0 +1,227 @@
+diff --git a/dist/chunk-FCHW5RP7.js b/dist/chunk-FCHW5RP7.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..caafd453c46f0fd8492e9ecb7ada97be6fd67871
+--- /dev/null
++++ b/dist/chunk-FCHW5RP7.js
+@@ -0,0 +1,6 @@
++import { a } from './chunk-XPDN4OR2.js';
++
++var t=e=>{let n=a("fs"),s=a("path");n.writeFileSync(s.join(__dirname,"generated.d.ts"),e);},c=e=>`export type TVGeneratedScreens = ${Object.keys(e).map(n=>`"${n}"`).join(" | ")};
++`,i=e=>{queueMicrotask(()=>{if(e!=null&&e.screens){let n=c(e.screens);typeof window=="undefined"&&t(n);}});};
++
++export { i as a };
+diff --git a/dist/chunk-FUBUDMV2.js b/dist/chunk-FUBUDMV2.js
+deleted file mode 100644
+index 62c6a6dd6012d38c39642244324bc39190676a4e..0000000000000000000000000000000000000000
+diff --git a/dist/chunk-XPDN4OR2.js b/dist/chunk-XPDN4OR2.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..4f16a3e1c7529963fd2a5dbd9b67509cd7d504b2
+--- /dev/null
++++ b/dist/chunk-XPDN4OR2.js
+@@ -0,0 +1,3 @@
++var d=(a=>typeof require!="undefined"?require:typeof Proxy!="undefined"?new Proxy(a,{get:(b,c)=>(typeof require!="undefined"?require:b)[c]}):a)(function(a){if(typeof require!="undefined")return require.apply(this,arguments);throw new Error('Dynamic require of "'+a+'" is not supported')});
++
++export { d as a };
+diff --git a/dist/generator.cjs b/dist/generator.cjs
+index c721bf5514f87b14ec84e6e6c19fbc2552bf64c9..8ebf9731a5eb9317d1557f3a281c2bb535b948ff 100644
+--- a/dist/generator.cjs
++++ b/dist/generator.cjs
+@@ -1,14 +1,6 @@
+ 'use strict';
+
+-var n = require('fs');
+-var s = require('path');
++var s=(e=>typeof require!="undefined"?require:typeof Proxy!="undefined"?new Proxy(e,{get:(n,r)=>(typeof require!="undefined"?require:n)[r]}):e)(function(e){if(typeof require!="undefined")return require.apply(this,arguments);throw new Error('Dynamic require of "'+e+'" is not supported')});var t=e=>{let n=s("fs"),r=s("path");n.writeFileSync(r.join(__dirname,"generated.d.ts"),e);},c=e=>`export type TVGeneratedScreens = ${Object.keys(e).map(n=>`"${n}"`).join(" | ")};
++`,o=e=>{queueMicrotask(()=>{if(e!=null&&e.screens){let n=c(e.screens);typeof window=="undefined"&&t(n);}});};
+
+-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+-
+-var n__default = /*#__PURE__*/_interopDefault(n);
+-var s__default = /*#__PURE__*/_interopDefault(s);
+-
+-var t=e=>{n__default.default.writeFileSync(s__default.default.join(__dirname,"generated.d.ts"),e);},c=e=>`export type TVGeneratedScreens = ${Object.keys(e).map(r=>`"${r}"`).join(" | ")};
+-`,p=e=>{queueMicrotask(()=>{if(e!=null&&e.screens){let r=c(e.screens);t(r);}});};
+-
+-exports.generateTypes = p;
++exports.generateTypes = o;
+diff --git a/dist/generator.js b/dist/generator.js
+index fe1d239b182f1ccbf7e3422f9d45e737cc85d163..8d4aac5db16ac779a0b22b3c2cd23f3b8e8676bc 100644
+--- a/dist/generator.js
++++ b/dist/generator.js
+@@ -1 +1,2 @@
+-export { a as generateTypes } from './chunk-FUBUDMV2.js';
++export { a as generateTypes } from './chunk-FCHW5RP7.js';
++import './chunk-XPDN4OR2.js';
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 0b4c9751898f3822a6b4b927016c0edee28b3682..fa250f6010b1078a8d1359f7201826cbb12dee1f 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -2,10 +2,10 @@
+
+ var tailwindMerge = require('tailwind-merge');
+
+-var T=e=>typeof e=="boolean"?`${e}`:e===0?"0":e,g=e=>!e||typeof e!="object"||Object.keys(e).length===0,Z=(e,l)=>JSON.stringify(e)===JSON.stringify(l);function _(e,l){e.forEach(function(c){Array.isArray(c)?_(c,l):l.push(c);});}function k(e){let l=[];return _(e,l),l}var K=(...e)=>k(e).filter(Boolean),j=(e,l)=>{let c={};for(let u in e)l!=null&&l.hasOwnProperty(u)?c[u]=typeof e[u]=="object"?j(e[u],l[u]):l[u]+" "+e[u]:c[u]=e[u];for(let u in l)c.hasOwnProperty(u)||(c[u]=l[u]);return c},B=e=>!e||typeof e!="string"?e:e.replace(/\s+/g," ").trim();var ge={twMerge:!0,twMergeConfig:{},responsiveVariants:!1},ee=e=>e||void 0,M=(...e)=>ee(k(e).filter(Boolean).join(" ")),P=null,S={},q=!1,w=(...e)=>l=>l.twMerge?((!P||q)&&(q=!1,P=g(S)?tailwindMerge.twMerge:tailwindMerge.extendTailwindMerge(S)),ee(P(M(e)))):M(e),p=(e,l)=>{for(let c in l)e.hasOwnProperty(c)?e[c]=M(e[c],l[c]):e[c]=l[c];return e},xe=(e,l)=>{var F,J,R,U,W;let{slots:c={},variants:u={},compoundVariants:A=[],compoundSlots:C=[],defaultVariants:te={}}=e,d={...ge,...l},v=M((F=e==null?void 0:e.extend)==null?void 0:F.base,e==null?void 0:e.base),m=j(u,(J=e==null?void 0:e.extend)==null?void 0:J.variants),b={...(R=e==null?void 0:e.extend)==null?void 0:R.defaultVariants,...te};!g(d.twMergeConfig)&&!Z(d.twMergeConfig,S)&&(q=!0,S=d.twMergeConfig);let $=g(c)?{}:{base:e==null?void 0:e.base,...c},O=g((U=e==null?void 0:e.extend)==null?void 0:U.slots)?$:p((W=e==null?void 0:e.extend)==null?void 0:W.slots,g($)?{base:e==null?void 0:e.base}:$),h=i=>{var I,L,Q,X;if(g(m)&&g(c)&&g((I=e==null?void 0:e.extend)==null?void 0:I.slots))return w(v,i==null?void 0:i.class,i==null?void 0:i.className)(d);if(A&&!Array.isArray(A))throw new TypeError(`The "compoundVariants" prop must be an array. Received: ${typeof A}`);if(C&&!Array.isArray(C))throw new TypeError(`The "compoundSlots" prop must be an array. Received: ${typeof C}`);let ne=(t,r,f=[],s)=>{let a=f;if(typeof r=="string")a.push(B(r).split(" ").map(n=>`${t}:${n}`));else if(Array.isArray(r))a.push(r.flatMap(n=>`${t}:${n}`));else if(typeof r=="object"&&typeof s=="string"){let n=r==null?void 0:r[s];if(n&&typeof n=="string"){let y=B(n);a[s]=a[s]?[...a[s],...y.split(" ").map(o=>`${t}:${o}`)]:y.split(" ").map(o=>`${t}:${o}`);}else Array.isArray(n)&&n.length>0&&(a[s]=n.flatMap(y=>`${t}:${y}`));}return a},z=(t,r=m,f=null)=>{let s=r==null?void 0:r[t];if(!s||g(s))return null;let a=i==null?void 0:i[t];if(a===null)return null;let n=T(a),y=Array.isArray(d.responsiveVariants)&&d.responsiveVariants.length>0||d.responsiveVariants===!0,o=b==null?void 0:b[t],x=[];typeof n=="object"&&y&&(x=Object.keys(n).reduce((N,V)=>{let Y=n[V],ie=s==null?void 0:s[Y];return V==="initial"?(o=Y,N):Array.isArray(d.responsiveVariants)&&!d.responsiveVariants.includes(V)?N:ne(V,ie,N,f)},[]));let E=s[n]||s[T(o)];return typeof x=="object"&&typeof f=="string"&&x[f]?p(x,E):x.length>0?[E,...x]:E},ae=()=>m?Object.keys(m).map(t=>z(t,m)):null,se=t=>!m||typeof m!="object"?null:Object.keys(m).reduce((r,f)=>{let s=z(f,m,t),a=t==="base"&&typeof s=="string"?s:s&&s[t];return a&&r.push(a),r},[]),fe=i&&Object.fromEntries(Object.entries(i).filter(([,t])=>t!==void 0)),D=t=>{var f;let r=typeof(i==null?void 0:i[t])=="object"?{[t]:(f=i[t])==null?void 0:f.initial}:{};return {...b,...fe,...r}},G=(t=[])=>t==null?void 0:t.filter(({class:r,className:f,...s})=>Object.entries(s).every(([a,n])=>{let y=D(a);return Array.isArray(n)?n.includes(y[a]):y[a]===n})).flatMap(({class:r,className:f})=>[r,f]),H=()=>{var f;let t=G(A),r=G((f=e==null?void 0:e.extend)==null?void 0:f.compoundVariants);return K(r,t)},le=()=>{let t=H();return Array.isArray(t)?t.reduce((r,f)=>{if(typeof f=="string"&&(r.base=w(r.base,f)(d)),typeof f=="object"){let s=Object.keys(f);for(let a of s)r[a]=w(r[a],f[a])(d);}return r},{}):t},ce=()=>C.length<1?null:C.reduce((t,r)=>{let{slots:f=[],class:s,className:a,...n}=r;if(!g(n)){let y=Object.keys(n);for(let o of y){let x=D(o)[o];if(!x||x!==n[o])return t}}for(let y of f)t[y]||(t[y]=[]),t[y].push([s,a]);return t},{});if(!g(c)||!g((L=e==null?void 0:e.extend)==null?void 0:L.slots)){let t=(Q=le())!=null?Q:[],r=(X=ce())!=null?X:[];return {...typeof O=="object"&&!g(O)?Object.keys(O).reduce((s,a)=>(s[a]=n=>w(O[a],se(a),t==null?void 0:t[a],r==null?void 0:r[a],n==null?void 0:n.class,n==null?void 0:n.className)(d),s),{}):{}}}return w(v,ae(),H(),i==null?void 0:i.class,i==null?void 0:i.className)(d)},re=()=>{if(!(!m||typeof m!="object"))return Object.keys(m)};return h.variantKeys=re(),h.base=v,h.slots=O,h.variants=m,h.defaultVariants=b,h.compoundSlots=C,h.compoundVariants=A,h};
++var k=t=>typeof t=="boolean"?`${t}`:t===0?"0":t,c=t=>!t||typeof t!="object"||Object.keys(t).length===0,H=(t,f)=>JSON.stringify(t)===JSON.stringify(f);function I(t,f){t.forEach(function(e){Array.isArray(e)?I(e,f):f.push(e);});}function j(t){let f=[];return I(t,f),f}var L=(...t)=>j(t).filter(Boolean),B=(t,f)=>{let e={};for(let u in t)f!=null&&f.hasOwnProperty(u)?e[u]=typeof t[u]=="object"?B(t[u],f[u]):f[u]+" "+t[u]:e[u]=t[u];for(let u in f)e.hasOwnProperty(u)||(e[u]=f[u]);return e},p=t=>!t||typeof t!="string"?t:t.replace(/\s+/g," ").trim();var it={twMerge:!0,twMergeConfig:{},responsiveVariants:!1},X=t=>t||void 0,v=(...t)=>X(j(t).filter(Boolean).join(" ")),P=null,S={},q=!1,w=(...t)=>f=>f.twMerge?((!P||q)&&(q=!1,P=c(S)?tailwindMerge.twMerge:tailwindMerge.extendTailwindMerge(S)),X(P(v(t)))):v(t),Q=(t,f)=>{for(let e in f)t.hasOwnProperty(e)?t[e]=v(t[e],f[e]):t[e]=f[e];return t},ut=(t,f)=>{let{extend:e=null,slots:u={},variants:x={},compoundVariants:A=[],compoundSlots:C=[],defaultVariants:F={}}=t,g={...it,...f},$=e!=null&&e.base?v(e.base,t==null?void 0:t.base):t==null?void 0:t.base,m=e!=null&&e.variants&&!c(e.variants)?B(x,e.variants):x,V=e!=null&&e.defaultVariants&&!c(e.defaultVariants)?{...e.defaultVariants,...F}:F;!c(g.twMergeConfig)&&!H(g.twMergeConfig,S)&&(q=!0,S=g.twMergeConfig);let E=c(u)?{}:{base:t==null?void 0:t.base,...u},O=c(e==null?void 0:e.slots)?E:Q(e==null?void 0:e.slots,c(E)?{base:t==null?void 0:t.base}:E),b=o=>{var z,D;if(c(m)&&c(u)&&c(e==null?void 0:e.slots))return w($,o==null?void 0:o.class,o==null?void 0:o.className)(g);if(A&&!Array.isArray(A))throw new TypeError(`The "compoundVariants" prop must be an array. Received: ${typeof A}`);if(C&&!Array.isArray(C))throw new TypeError(`The "compoundSlots" prop must be an array. Received: ${typeof C}`);let Z=(r,n,l=[],i)=>{let a=l;if(typeof n=="string")a.push(p(n).split(" ").map(s=>`${r}:${s}`));else if(Array.isArray(n))a.push(n.flatMap(s=>`${r}:${s}`));else if(typeof n=="object"&&typeof i=="string"){let s=n==null?void 0:n[i];if(s&&typeof s=="string"){let y=p(s);a[i]=a[i]?[...a[i],...y.split(" ").map(d=>`${r}:${d}`)]:y.split(" ").map(d=>`${r}:${d}`);}else Array.isArray(s)&&s.length>0&&(a[i]=s.flatMap(y=>`${r}:${y}`));}return a},J=(r,n=m,l=null)=>{let i=n==null?void 0:n[r];if(!i||c(i))return null;let a=o==null?void 0:o[r];if(a===null)return null;let s=k(a),y=Array.isArray(g.responsiveVariants)&&g.responsiveVariants.length>0||g.responsiveVariants===!0,d=V==null?void 0:V[r],h=[];typeof s=="object"&&y&&(h=Object.keys(s).reduce((T,M)=>{let G=s[M],nt=i==null?void 0:i[G];return M==="initial"?(d=G,T):Array.isArray(g.responsiveVariants)&&!g.responsiveVariants.includes(M)?T:Z(M,nt,T,l)},[]));let N=i[s]||i[k(d)];return typeof h=="object"&&typeof l=="string"&&h[l]?Q(h,N):h.length>0?[N,...h]:N},_=()=>m?Object.keys(m).map(r=>J(r,m)):null,K=r=>!m||typeof m!="object"?null:Object.keys(m).reduce((n,l)=>{let i=J(l,m,r),a=r==="base"&&typeof i=="string"?i:i&&i[r];return a&&n.push(a),n},[]),tt=o&&Object.fromEntries(Object.entries(o).filter(([,r])=>r!==void 0)),R=r=>{var l;let n=typeof(o==null?void 0:o[r])=="object"?{[r]:(l=o[r])==null?void 0:l.initial}:{};return {...V,...tt,...n}},U=(r=[])=>r==null?void 0:r.filter(({class:n,className:l,...i})=>Object.entries(i).every(([a,s])=>{let y=R(a);return Array.isArray(s)?s.includes(y[a]):y[a]===s})).flatMap(({class:n,className:l})=>[n,l]),W=()=>{let r=U(A),n=U(e==null?void 0:e.compoundVariants);return L(n,r)},et=()=>{let r=W();return Array.isArray(r)?r.reduce((n,l)=>{if(typeof l=="string"&&(n.base=w(n.base,l)(g)),typeof l=="object"){let i=Object.keys(l);for(let a of i)n[a]=w(n[a],l[a])(g);}return n},{}):r},rt=()=>C.length<1?null:C.reduce((r,n)=>{let{slots:l=[],class:i,className:a,...s}=n;if(!c(s)){let y=Object.keys(s);for(let d of y){let h=R(d)[d];if(h===void 0||h!==s[d])return r}}for(let y of l)r[y]||(r[y]=[]),r[y].push([i,a]);return r},{});if(!c(u)||!c(e==null?void 0:e.slots)){let r=(z=et())!=null?z:[],n=(D=rt())!=null?D:[];return {...typeof O=="object"&&!c(O)?Object.keys(O).reduce((i,a)=>(i[a]=s=>w(O[a],K(a),r==null?void 0:r[a],n==null?void 0:n[a],s==null?void 0:s.class,s==null?void 0:s.className)(g),i),{}):{}}}return w($,_(),W(),o==null?void 0:o.class,o==null?void 0:o.className)(g)},Y=()=>{if(!(!m||typeof m!="object"))return Object.keys(m)};return b.variantKeys=Y(),b.extend=e,b.base=$,b.slots=O,b.variants=m,b.defaultVariants=V,b.compoundSlots=C,b.compoundVariants=A,b};
+
+ exports.cn = w;
+-exports.cnBase = M;
+-exports.defaultConfig = ge;
+-exports.tv = xe;
+-exports.voidEmpty = ee;
++exports.cnBase = v;
++exports.defaultConfig = it;
++exports.tv = ut;
++exports.voidEmpty = X;
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 55e0a302a72aef52f814fe468b2414bc467fa392..42b58a53b24522fe32b8337302855c1624255560 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -180,7 +180,10 @@ export type TVReturnProps<
+   B extends ClassValue,
+   EV extends TVVariants<ES>,
+   ES extends TVSlots,
++  // @ts-expect-error
++  E extends TVReturnType = undefined,
+ > = {
++  extend: E;
+   base: B;
+   slots: S;
+   variants: V;
+@@ -197,13 +200,15 @@ export type TVReturnType<
+   C extends TVConfig<V, EV>,
+   EV extends TVVariants<ES>,
+   ES extends TVSlots,
++  // @ts-expect-error
++  E extends TVReturnType = undefined,
+ > = {
+   (props?: TVProps<V, S, C, EV, ES>): ES extends undefined
+     ? S extends undefined
+       ? string
+       : {[K in TVSlotsWithBase<S, B>]: (slotProps?: ClassProp) => string}
+     : {[K in TVSlotsWithBase<ES & S, B>]: (slotProps?: ClassProp) => string};
+-} & TVReturnProps<V, S, B, EV, ES>;
++} & TVReturnProps<V, S, B, EV, ES, E>;
+
+ export type TV = {
+   <
+@@ -229,7 +234,7 @@ export type TV = {
+   >(
+     options: {
+       /**
+-       * Extend allows easily compose components.
++       * Extend allows for easy composition of components.
+        * @see https://www.tailwind-variants.org/docs/composing-components
+        */
+       extend?: E;
+@@ -238,22 +243,22 @@ export type TV = {
+        */
+       base?: B;
+       /**
+-       * Slots allows you to separate an component into multiple parts.
++       * Slots allow you to separate a component into multiple parts.
+        * @see https://www.tailwind-variants.org/docs/slots
+        */
+       slots?: S;
+       /**
+-       * Variants allows you to create multiple versions of the same component.
++       * Variants allow you to create multiple versions of the same component.
+        * @see https://www.tailwind-variants.org/docs/variants#adding-variants
+        */
+       variants?: V;
+       /**
+-       * Compound variants allow apply classes to multiple variants at once.
++       * Compound variants allow you to apply classes to multiple variants at once.
+        * @see https://www.tailwind-variants.org/docs/variants#compound-variants
+        */
+       compoundVariants?: CV;
+       /**
+-       * Compound slots allow apply classes to multiple slots at once.
++       * Compound slots allow you to apply classes to multiple slots at once.
+        */
+       compoundSlots?: TVCompoundSlots<V, S, B>;
+       /**
+@@ -263,11 +268,11 @@ export type TV = {
+       defaultVariants?: DV;
+     },
+     /**
+-     * The config object to modify the default configuration.
++     * The config object allows you to modify the default configuration.
+      * @see https://www.tailwind-variants.org/docs/api-reference#config-optional
+      */
+     config?: C,
+-  ): TVReturnType<V, S, B, C, EV, ES>;
++  ): TVReturnType<V, S, B, C, EV, ES, E>;
+ };
+
+ // main function
+diff --git a/dist/index.js b/dist/index.js
+index 4e9c4b033d48488b3541908081a644163afd48db..74559941ecec4d3865a749000499168e1f1decf8 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,6 +1,7 @@
+ import { d, b, f, c, e, a, g } from './chunk-HHQZCQ2Q.js';
++import './chunk-XPDN4OR2.js';
+ import { twMerge, extendTailwindMerge } from 'tailwind-merge';
+
+-var de={twMerge:!0,twMergeConfig:{},responsiveVariants:!1},K=e=>e||void 0,M=(...e)=>K(d(e).filter(Boolean).join(" ")),B=null,v={},k=!1,j=(...e)=>C=>C.twMerge?((!B||k)&&(k=!1,B=b(v)?twMerge:extendTailwindMerge(v)),K(B(M(e)))):M(e),_=(e,C)=>{for(let y in C)e.hasOwnProperty(y)?e[y]=M(e[y],C[y]):e[y]=C[y];return e},me=(e$1,C)=>{var o,F,R,q,P;let{slots:y={},variants:p={},compoundVariants:V=[],compoundSlots:A=[],defaultVariants:ee={}}=e$1,i={...de,...C},O=M((o=e$1==null?void 0:e$1.extend)==null?void 0:o.base,e$1==null?void 0:e$1.base),d=f(p,(F=e$1==null?void 0:e$1.extend)==null?void 0:F.variants),h={...(R=e$1==null?void 0:e$1.extend)==null?void 0:R.defaultVariants,...ee};!b(i.twMergeConfig)&&!c(i.twMergeConfig,v)&&(k=!0,v=i.twMergeConfig);let $=b(y)?{}:{base:e$1==null?void 0:e$1.base,...y},w=b((q=e$1==null?void 0:e$1.extend)==null?void 0:q.slots)?$:_((P=e$1==null?void 0:e$1.extend)==null?void 0:P.slots,b($)?{base:e$1==null?void 0:e$1.base}:$),b$1=l=>{var G,H,I,J;if(b(d)&&b(y)&&b((G=e$1==null?void 0:e$1.extend)==null?void 0:G.slots))return j(O,l==null?void 0:l.class,l==null?void 0:l.className)(i);if(V&&!Array.isArray(V))throw new TypeError(`The "compoundVariants" prop must be an array. Received: ${typeof V}`);if(A&&!Array.isArray(A))throw new TypeError(`The "compoundSlots" prop must be an array. Received: ${typeof A}`);let re=(t,r,f=[],s)=>{let n=f;if(typeof r=="string")n.push(g(r).split(" ").map(a=>`${t}:${a}`));else if(Array.isArray(r))n.push(r.flatMap(a=>`${t}:${a}`));else if(typeof r=="object"&&typeof s=="string"){let a=r==null?void 0:r[s];if(a&&typeof a=="string"){let u=g(a);n[s]=n[s]?[...n[s],...u.split(" ").map(g=>`${t}:${g}`)]:u.split(" ").map(g=>`${t}:${g}`);}else Array.isArray(a)&&a.length>0&&(n[s]=a.flatMap(u=>`${t}:${u}`));}return n},U=(t,r=d,f=null)=>{let s=r==null?void 0:r[t];if(!s||b(s))return null;let n=l==null?void 0:l[t];if(n===null)return null;let a$1=a(n),u=Array.isArray(i.responsiveVariants)&&i.responsiveVariants.length>0||i.responsiveVariants===!0,g=h==null?void 0:h[t],m=[];typeof a$1=="object"&&u&&(m=Object.keys(a$1).reduce((S,x)=>{let L=a$1[x],ue=s==null?void 0:s[L];return x==="initial"?(g=L,S):Array.isArray(i.responsiveVariants)&&!i.responsiveVariants.includes(x)?S:re(x,ue,S,f)},[]));let N=s[a$1]||s[a(g)];return typeof m=="object"&&typeof f=="string"&&m[f]?_(m,N):m.length>0?[N,...m]:N},ae=()=>d?Object.keys(d).map(t=>U(t,d)):null,ne=t=>!d||typeof d!="object"?null:Object.keys(d).reduce((r,f)=>{let s=U(f,d,t),n=t==="base"&&typeof s=="string"?s:s&&s[t];return n&&r.push(n),r},[]),se=l&&Object.fromEntries(Object.entries(l).filter(([,t])=>t!==void 0)),W=t=>{var f;let r=typeof(l==null?void 0:l[t])=="object"?{[t]:(f=l[t])==null?void 0:f.initial}:{};return {...h,...se,...r}},z=(t=[])=>t==null?void 0:t.filter(({class:r,className:f,...s})=>Object.entries(s).every(([n,a])=>{let u=W(n);return Array.isArray(a)?a.includes(u[n]):u[n]===a})).flatMap(({class:r,className:f})=>[r,f]),D=()=>{var f;let t=z(V),r=z((f=e$1==null?void 0:e$1.extend)==null?void 0:f.compoundVariants);return e(r,t)},fe=()=>{let t=D();return Array.isArray(t)?t.reduce((r,f)=>{if(typeof f=="string"&&(r.base=j(r.base,f)(i)),typeof f=="object"){let s=Object.keys(f);for(let n of s)r[n]=j(r[n],f[n])(i);}return r},{}):t},le=()=>A.length<1?null:A.reduce((t,r)=>{let{slots:f=[],class:s,className:n,...a}=r;if(!b(a)){let u=Object.keys(a);for(let g of u){let m=W(g)[g];if(!m||m!==a[g])return t}}for(let u of f)t[u]||(t[u]=[]),t[u].push([s,n]);return t},{});if(!b(y)||!b((H=e$1==null?void 0:e$1.extend)==null?void 0:H.slots)){let t=(I=fe())!=null?I:[],r=(J=le())!=null?J:[];return {...typeof w=="object"&&!b(w)?Object.keys(w).reduce((s,n)=>(s[n]=a=>j(w[n],ne(n),t==null?void 0:t[n],r==null?void 0:r[n],a==null?void 0:a.class,a==null?void 0:a.className)(i),s),{}):{}}}return j(O,ae(),D(),l==null?void 0:l.class,l==null?void 0:l.className)(i)},te=()=>{if(!(!d||typeof d!="object"))return Object.keys(d)};return b$1.variantKeys=te(),b$1.base=O,b$1.slots=w,b$1.variants=d,b$1.defaultVariants=h,b$1.compoundSlots=A,b$1.compoundVariants=V,b$1};
++var st={twMerge:!0,twMergeConfig:{},responsiveVariants:!1},Y=i=>i||void 0,M=(...i)=>Y(d(i).filter(Boolean).join(" ")),k=null,O={},F=!1,v=(...i)=>d=>d.twMerge?((!k||F)&&(F=!1,k=b(O)?twMerge:extendTailwindMerge(O)),Y(k(M(i)))):M(i),X=(i,d)=>{for(let e in d)i.hasOwnProperty(e)?i[e]=M(i[e],d[e]):i[e]=d[e];return i},lt=(i,d)=>{let{extend:e$1=null,slots:w={},variants:R={},compoundVariants:C=[],compoundSlots:V=[],defaultVariants:q={}}=i,c$1={...st,...d},$=e$1!=null&&e$1.base?M(e$1.base,i==null?void 0:i.base):i==null?void 0:i.base,y=e$1!=null&&e$1.variants&&!b(e$1.variants)?f(R,e$1.variants):R,A=e$1!=null&&e$1.defaultVariants&&!b(e$1.defaultVariants)?{...e$1.defaultVariants,...q}:q;!b(c$1.twMergeConfig)&&!c(c$1.twMergeConfig,O)&&(F=!0,O=c$1.twMergeConfig);let N=b(w)?{}:{base:i==null?void 0:i.base,...w},h=b(e$1==null?void 0:e$1.slots)?N:X(e$1==null?void 0:e$1.slots,b(N)?{base:i==null?void 0:i.base}:N),m=l=>{var D,G;if(b(y)&&b(w)&&b(e$1==null?void 0:e$1.slots))return v($,l==null?void 0:l.class,l==null?void 0:l.className)(c$1);if(C&&!Array.isArray(C))throw new TypeError(`The "compoundVariants" prop must be an array. Received: ${typeof C}`);if(V&&!Array.isArray(V))throw new TypeError(`The "compoundSlots" prop must be an array. Received: ${typeof V}`);let _=(t,r,f=[],s)=>{let a=f;if(typeof r=="string")a.push(g(r).split(" ").map(n=>`${t}:${n}`));else if(Array.isArray(r))a.push(r.flatMap(n=>`${t}:${n}`));else if(typeof r=="object"&&typeof s=="string"){let n=r==null?void 0:r[s];if(n&&typeof n=="string"){let o=g(n);a[s]=a[s]?[...a[s],...o.split(" ").map(g=>`${t}:${g}`)]:o.split(" ").map(g=>`${t}:${g}`);}else Array.isArray(n)&&n.length>0&&(a[s]=n.flatMap(o=>`${t}:${o}`));}return a},P=(t,r=y,f=null)=>{let s=r==null?void 0:r[t];if(!s||b(s))return null;let a$1=l==null?void 0:l[t];if(a$1===null)return null;let n=a(a$1),o=Array.isArray(c$1.responsiveVariants)&&c$1.responsiveVariants.length>0||c$1.responsiveVariants===!0,g=A==null?void 0:A[t],b$1=[];typeof n=="object"&&o&&(b$1=Object.keys(n).reduce((T,j)=>{let H=n[j],rt=s==null?void 0:s[H];return j==="initial"?(g=H,T):Array.isArray(c$1.responsiveVariants)&&!c$1.responsiveVariants.includes(j)?T:_(j,rt,T,f)},[]));let S=s[n]||s[a(g)];return typeof b$1=="object"&&typeof f=="string"&&b$1[f]?X(b$1,S):b$1.length>0?[S,...b$1]:S},x=()=>y?Object.keys(y).map(t=>P(t,y)):null,K=t=>!y||typeof y!="object"?null:Object.keys(y).reduce((r,f)=>{let s=P(f,y,t),a=t==="base"&&typeof s=="string"?s:s&&s[t];return a&&r.push(a),r},[]),p=l&&Object.fromEntries(Object.entries(l).filter(([,t])=>t!==void 0)),U=t=>{var f;let r=typeof(l==null?void 0:l[t])=="object"?{[t]:(f=l[t])==null?void 0:f.initial}:{};return {...A,...p,...r}},W=(t=[])=>t==null?void 0:t.filter(({class:r,className:f,...s})=>Object.entries(s).every(([a,n])=>{let o=U(a);return Array.isArray(n)?n.includes(o[a]):o[a]===n})).flatMap(({class:r,className:f})=>[r,f]),z=()=>{let t=W(C),r=W(e$1==null?void 0:e$1.compoundVariants);return e(r,t)},tt=()=>{let t=z();return Array.isArray(t)?t.reduce((r,f)=>{if(typeof f=="string"&&(r.base=v(r.base,f)(c$1)),typeof f=="object"){let s=Object.keys(f);for(let a of s)r[a]=v(r[a],f[a])(c$1);}return r},{}):t},et=()=>V.length<1?null:V.reduce((t,r)=>{let{slots:f=[],class:s,className:a,...n}=r;if(!b(n)){let o=Object.keys(n);for(let g of o){let b=U(g)[g];if(b===void 0||b!==n[g])return t}}for(let o of f)t[o]||(t[o]=[]),t[o].push([s,a]);return t},{});if(!b(w)||!b(e$1==null?void 0:e$1.slots)){let t=(D=tt())!=null?D:[],r=(G=et())!=null?G:[];return {...typeof h=="object"&&!b(h)?Object.keys(h).reduce((s,a)=>(s[a]=n=>v(h[a],K(a),t==null?void 0:t[a],r==null?void 0:r[a],n==null?void 0:n.class,n==null?void 0:n.className)(c$1),s),{}):{}}}return v($,x(),z(),l==null?void 0:l.class,l==null?void 0:l.className)(c$1)},Z=()=>{if(!(!y||typeof y!="object"))return Object.keys(y)};return m.variantKeys=Z(),m.extend=e$1,m.base=$,m.slots=h,m.variants=y,m.defaultVariants=A,m.compoundSlots=V,m.compoundVariants=C,m};
+
+-export { j as cn, M as cnBase, de as defaultConfig, me as tv, K as voidEmpty };
++export { v as cn, M as cnBase, st as defaultConfig, lt as tv, Y as voidEmpty };
+diff --git a/dist/transformer.cjs b/dist/transformer.cjs
+index 86e9bf012e275c77440c5ac5359209970f4744b5..4cab00f2e3a9fabd2a5baca71e4e500cd3265367 100644
+--- a/dist/transformer.cjs
++++ b/dist/transformer.cjs
+@@ -1,26 +1,22 @@
+ 'use strict';
+
+-var V = require('tailwindcss/resolveConfig');
+-var w = require('fs');
+-var O = require('path');
++var C = require('tailwindcss/resolveConfig');
+
+ function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+-var V__default = /*#__PURE__*/_interopDefault(V);
+-var w__default = /*#__PURE__*/_interopDefault(w);
+-var O__default = /*#__PURE__*/_interopDefault(O);
++var C__default = /*#__PURE__*/_interopDefault(C);
+
+-var S=t=>{w__default.default.writeFileSync(O__default.default.join(__dirname,"generated.d.ts"),t);},C=t=>`export type TVGeneratedScreens = ${Object.keys(t).map(e=>`"${e}"`).join(" | ")};
+-`,v=t=>{queueMicrotask(()=>{if(t!=null&&t.screens){let e=C(t.screens);S(e);}});};var u={tv:/tv\s*\((.*?)\)/gs,tvExtend:/extend:\s*\w+(,| )\s*/,comment:/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm,blankLine:/^\s*$(?:\r\n?|\n)/gm,extension:/\.\w+/g},l=t=>Array.isArray(t),E=t=>typeof t=="string",p=t=>typeof t=="object",$=t=>typeof t=="boolean",y=t=>typeof t=="function",c=t=>!!(!t||l(t)&&t.length===0||E(t)&&t.length===0||p(t)&&Object.keys(t).length===0),k=(t,e)=>{let n={},r=e.length,s=Object.prototype.hasOwnProperty;for(let i=0;i<r;i++){let o=e[i];s.call(t,o)&&(n[o]=t[o]);}return n},A=(t,e)=>{let n="https://github.com/nextui-org/tailwind-variants/issues/new/choose";console.log("\x1B[31m%s\x1B[0m",`${t}: ${e.message}`),console.log(`If you think this is an issue, please submit it at ${n}`);},x=(...t)=>e=>t.reduce((n,r)=>r(n),e),F=t=>{let n=t.replace(u.comment,"$1").toString().replace(u.blankLine,"").toString(),r=s=>s[1].replace(u.tvExtend,"").toString();return Array.from(n.matchAll(u.tv),r)},B=t=>{let e=F(t);if(!c(e))return e.map(n=>n.includes("responsiveVariants")?new Function(`
++var v=(t=>typeof require!="undefined"?require:typeof Proxy!="undefined"?new Proxy(t,{get:(e,n)=>(typeof require!="undefined"?require:e)[n]}):t)(function(t){if(typeof require!="undefined")return require.apply(this,arguments);throw new Error('Dynamic require of "'+t+'" is not supported')});var O=t=>{let e=v("fs"),n=v("path");e.writeFileSync(n.join(__dirname,"generated.d.ts"),t);},S=t=>`export type TVGeneratedScreens = ${Object.keys(t).map(e=>`"${e}"`).join(" | ")};
++`,y=t=>{queueMicrotask(()=>{if(t!=null&&t.screens){let e=S(t.screens);typeof window=="undefined"&&O(e);}});};var m={tv:/tv\s*\((.*?)\)/gs,tvExtend:/extend:\s*\w+(,| )\s*/,comment:/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm,blankLine:/^\s*$(?:\r\n?|\n)/gm,extension:/\.\w+/g},l=t=>Array.isArray(t),h=t=>typeof t=="string",p=t=>typeof t=="object",V=t=>typeof t=="boolean",x=t=>typeof t=="function",c=t=>!!(!t||l(t)&&t.length===0||h(t)&&t.length===0||p(t)&&Object.keys(t).length===0),$=(t,e)=>{let n={},r=e.length,s=Object.prototype.hasOwnProperty;for(let i=0;i<r;i++){let o=e[i];s.call(t,o)&&(n[o]=t[o]);}return n},k=(t,e)=>{let n="https://github.com/nextui-org/tailwind-variants/issues/new/choose";console.log("\x1B[31m%s\x1B[0m",`${t}: ${e.message}`),console.log(`If you think this is an issue, please submit it at ${n}`);},b=(...t)=>e=>t.reduce((n,r)=>r(n),e),A=t=>{let n=t.replace(m.comment,"$1").toString().replace(m.blankLine,"").toString(),r=s=>s[1].replace(m.tvExtend,"").toString();return Array.from(n.matchAll(m.tv),r)},F=t=>{let e=A(t);if(!c(e))return e.map(n=>n.includes("responsiveVariants")?new Function(`
+       const [options, config] = [${n.toString()}];
+       return {options, config};
+-    `)():{})},h=t=>t.flatMap(e=>e).toString().replaceAll(","," ").split(" "),D=(t,e)=>{let n={};for(let[r,s]of Object.entries(t))n[r]={},n[r].original=s,!c(s)&&(n.temp=l(s)?h(s):s.split(" "),e.forEach(i=>{let o="";n.temp.forEach(a=>{o+=`${i}:${a} `;}),n[r][i]=o.trimEnd();}),delete n.temp);return n},L=(t,e)=>E(t)?t.split(" "):l(t)?h(t):p(t)?D(t,e):t,b=(t,e)=>{let n={};for(let[r,s]of Object.entries(t))if(n[r]={},!c(s))for(let[i,o]of Object.entries(s)){if(n[r][i]={},n[r][i].original=o,c(o))continue;let a=L(o,e);if(!c(a)){if(!l(a)){n[r][i]=a;continue}e.forEach(m=>{let f="";a.forEach(d=>{f+=`${m}:${d} `;}),n[r][i][m]=f.trimEnd();});}}return n},T=({options:t,config:e},n)=>{var i,o;let r=(i=t==null?void 0:t.variants)!=null?i:{},s=(o=e==null?void 0:e.responsiveVariants)!=null?o:!1;if(!(!s||c(r))){if($(s))return b(r,n);if(l(s))return b(r,s);if(p(s)){let a=[];for(let[m,f]of Object.entries(s)){if(!f||c(f))continue;let j={options:{variants:k(r,[m])},config:{responsiveVariants:f}};a.push(T(j,n));}return a}}},N=(t,e)=>{try{if(!t.includes("tailwind-variants"))return t;let n=B(t);if(c(n))return t;let r=JSON.stringify(n.map(o=>T(o,e)),void 0,2),s=`
++    `)():{})},w=t=>t.flatMap(e=>e).toString().replaceAll(","," ").split(" "),B=(t,e)=>{let n={};for(let[r,s]of Object.entries(t))n[r]={},n[r].original=s,!c(s)&&(n.temp=l(s)?w(s):s.split(" "),e.forEach(i=>{let o="";n.temp.forEach(a=>{o+=`${i}:${a} `;}),n[r][i]=o.trimEnd();}),delete n.temp);return n},D=(t,e)=>h(t)?t.split(" "):l(t)?w(t):p(t)?B(t,e):t,E=(t,e)=>{let n={};for(let[r,s]of Object.entries(t))if(n[r]={},!c(s))for(let[i,o]of Object.entries(s)){if(n[r][i]={},n[r][i].original=o,c(o))continue;let a=D(o,e);if(!c(a)){if(!l(a)){n[r][i]=a;continue}e.forEach(u=>{let f="";a.forEach(g=>{f+=`${u}:${g} `;}),n[r][i][u]=f.trimEnd();});}}return n},T=({options:t,config:e},n)=>{var i,o;let r=(i=t==null?void 0:t.variants)!=null?i:{},s=(o=e==null?void 0:e.responsiveVariants)!=null?o:!1;if(!(!s||c(r))){if(V(s))return E(r,n);if(l(s))return E(r,s);if(p(s)){let a=[];for(let[u,f]of Object.entries(s)){if(!f||c(f))continue;let j={options:{variants:$(r,[u])},config:{responsiveVariants:f}};a.push(T(j,n));}return a}}},L=(t,e)=>{try{if(!t.includes("tailwind-variants"))return t;let n=F(t);if(c(n))return t;let r=JSON.stringify(n.map(o=>T(o,e)),void 0,2),s=`
+ /* Tailwind Variants Transformed Content Start
+
+ `,i=`
+
+ Tailwind Variants Transformed Content End */
+-`;return t.concat(s+r+i)}catch(n){return A("Tailwind Variants Transform Failed",n),t}},g=t=>{let e=t.map(n=>{if(p(n)&&n.extension)return n.extension;let r=n.match(u.extension);return r||(r=n.split("{"),r=r.pop().replace("}","").split(",")),r.map(s=>s.replace(".","").split(".")).flat()}).flatMap(n=>n);return Array.from(new Set(e)).filter(n=>n!=="html")},G=t=>{var s;let e=V__default.default(t);if(v(e.theme),c((s=e.content)==null?void 0:s.files)||!l(e.content.files))return e;let n=i=>{var o,a;return N(i,Object.keys((a=(o=e.theme)==null?void 0:o.screens)!=null?a:{}))},r=e.content.transform;if(c(r)){let o=g(e.content.files).map(a=>[a,n]);return e.content.transform=Object.fromEntries(o),e}if(y(r)){let o=g(e.content.files).map(a=>[a,x(n,r)]);return e.content.transform=Object.fromEntries(o),e}if(p(r)){let o=g(e.content.files).map(a=>y(r[a])?[a,x(n,r[a])]:[a,n]);return e.content.transform=Object.fromEntries(o),e}return e};
++`;return t.concat(s+r+i)}catch(n){return k("Tailwind Variants Transform Failed",n),t}},d=t=>{let e=t.map(n=>{if(p(n)&&n.extension)return n.extension;let r=n.match(m.extension);return r||(r=n.split("{"),r=r.pop().replace("}","").split(",")),r.map(s=>s.replace(".","").split(".")).flat()}).flatMap(n=>n);return Array.from(new Set(e)).filter(n=>n!=="html")},P=t=>{var s;let e=C__default.default(t);if(y(e.theme),c((s=e.content)==null?void 0:s.files)||!l(e.content.files))return e;let n=i=>{var o,a;return L(i,Object.keys((a=(o=e.theme)==null?void 0:o.screens)!=null?a:{}))},r=e.content.transform;if(c(r)){let o=d(e.content.files).map(a=>[a,n]);return e.content.transform=Object.fromEntries(o),e}if(x(r)){let o=d(e.content.files).map(a=>[a,b(n,r)]);return e.content.transform=Object.fromEntries(o),e}if(p(r)){let o=d(e.content.files).map(a=>x(r[a])?[a,b(n,r[a])]:[a,n]);return e.content.transform=Object.fromEntries(o),e}return e};
+
+-exports.tvTransformer = N;
+-exports.withTV = G;
++exports.tvTransformer = L;
++exports.withTV = P;
+diff --git a/dist/transformer.js b/dist/transformer.js
+index 3f05b25523af65a4531678bba208da82bc712304..72cc80f1ba40acac5730c3b51399d23669b87ecb 100644
+--- a/dist/transformer.js
++++ b/dist/transformer.js
+@@ -1,4 +1,5 @@
+-import { a } from './chunk-FUBUDMV2.js';
++import { a } from './chunk-FCHW5RP7.js';
++import './chunk-XPDN4OR2.js';
+ import w from 'tailwindcss/resolveConfig';
+
+ var u={tv:/tv\s*\((.*?)\)/gs,tvExtend:/extend:\s*\w+(,| )\s*/,comment:/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm,blankLine:/^\s*$(?:\r\n?|\n)/gm,extension:/\.\w+/g},l=t=>Array.isArray(t),E=t=>typeof t=="string",p=t=>typeof t=="object",T=t=>typeof t=="boolean",h=t=>typeof t=="function",c=t=>!!(!t||l(t)&&t.length===0||E(t)&&t.length===0||p(t)&&Object.keys(t).length===0),j=(t,e)=>{let n={},r=e.length,s=Object.prototype.hasOwnProperty;for(let i=0;i<r;i++){let o=e[i];s.call(t,o)&&(n[o]=t[o]);}return n},V=(t,e)=>{let n="https://github.com/nextui-org/tailwind-variants/issues/new/choose";console.log("\x1B[31m%s\x1B[0m",`${t}: ${e.message}`),console.log(`If you think this is an issue, please submit it at ${n}`);},x=(...t)=>e=>t.reduce((n,r)=>r(n),e),S=t=>{let n=t.replace(u.comment,"$1").toString().replace(u.blankLine,"").toString(),r=s=>s[1].replace(u.tvExtend,"").toString();return Array.from(n.matchAll(u.tv),r)},$=t=>{let e=S(t);if(!c(e))return e.map(n=>n.includes("responsiveVariants")?new Function(`
+diff --git a/dist/utils.js b/dist/utils.js
+index 36763dda73836aea5d5102a70e06558d25cb4ce5..e958163b597f307fe203aed129c82ba772c46a8a 100644
+--- a/dist/utils.js
++++ b/dist/utils.js
+@@ -1 +1,2 @@
+ export { a as falsyToString, d as flatArray, e as flatMergeArrays, b as isEmptyObject, c as isEqual, f as mergeObjects, g as removeExtraSpaces } from './chunk-HHQZCQ2Q.js';
++import './chunk-XPDN4OR2.js';
