@@ -35,7 +35,8 @@
     ├── prettier
     ├── stylelint
     ├── tailwind
-    └── tsconfig
+    ├── tsconfig
+    └── type
 ```
 
 | モジュール              | 責務                                                       |
@@ -51,6 +52,7 @@
 | `packages/stylelint`    | Stylelint の設定を提供する                                 |
 | `packages/tailwind`     | Tailwind CSS の設定を提供する                              |
 | `packages/tsconfig`     | tsconfig の設定を提供する                                  |
+| `packages/type`         | TypeScript の型定義を提供する                              |
 
 ## モジュール間の参照
 
