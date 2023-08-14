@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 -->
 
-# USA
+# USA 🥕
 
 A new table card game inspired by [UNO](<https://en.wikipedia.org/wiki/Uno_(card_game)>) that can be played on the web.
 
@@ -9,20 +9,20 @@ A new table card game inspired by [UNO](<https://en.wikipedia.org/wiki/Uno_(card
 |                                           shio                                            |                                        koutyuke!!                                         |
 | :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
 | [<img src="https://github.com/dino3616.png" width="160px">](https://github.com/dino3616/) | [<img src="https://github.com/koutyuke.png" width="160px">](https://github.com/koutyuke/) |
-|                         `#repository-owner` `#backend-developer`                          |                             `#designer` `#frontend-developer`                             |
+|                   `#repository-owner` `#designer` `#backend-developer`                    |                             `#designer` `#frontend-developer`                             |
 
 ## Setup
 
-### git clone
+### clone git repository
 
-```powershell
-git clone "https://github.com/cardo-usa/usa"
+```bash
+git clone "https://github.com/cardo-usa/usa/"
 ```
 
 ### launch conatiner
 
-```powershell
-docker compose -f "./docker/docker-compose.development.yml" -p "usa" up -d
+```bash
+docker compose -f "./docker/docker-compose.development.yaml" -p "usa" up -d
 ```
 
 ### set env variables
