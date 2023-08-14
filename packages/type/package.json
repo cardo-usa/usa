@@ -1,0 +1,28 @@
+{
+  "name": "@usa/type",
+  "version": "0.1.0",
+  "repository": "https://github.com/cardo-usa/usa.git",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "module": "nodenext",
+  "main": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint './**/{*.*js,*.*ts,*.*tsx}'",
+    "lint:fix": "eslint './**/{*.*js,*.*ts,*.*tsx}' --fix",
+    "fmt": "prettier --check .",
+    "fmt:fix": "prettier --write .",
+    "test": "jest --silent=false --verbose false --passWithNoTests"
+  },
+  "dependencies": {
+    "dotenv": "16.3.1"
+  },
+  "devDependencies": {
+    "@usa/jest": "workspace:*",
+    "@usa/prettier": "workspace:*",
+    "@usa/tsconfig": "workspace:*",
+    "add": "2.0.6",
+    "eslint-config-usa-esm": "workspace:*",
+    "ts-essentials": "9.3.2"
+  }
+}
