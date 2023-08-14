@@ -37,7 +37,7 @@ export type UserIconProps = Omit<ComponentPropsWithoutRef<'div'>, 'children' | '
   size: VariantProps<typeof userIconVariant>['size'];
 };
 
-export const UserIcon = ({ emoji, backgroundColor, size, ...props }: UserIconProps): ReactNode => (
+export const UserIcon = ({ emoji, backgroundColor, size = '3xl', ...props }: UserIconProps): ReactNode => (
   <div className={cn('h-fit w-fit overflow-hidden rounded-full', userIconVariant({ backgroundColor }))} {...props}>
     <span className={cn('pointer-events-none flex select-none items-center justify-center', userIconVariant({ size }))}>{emoji}</span>
   </div>

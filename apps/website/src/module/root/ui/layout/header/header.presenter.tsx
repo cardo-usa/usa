@@ -24,14 +24,7 @@ export const Header = ({ accountSetting, className, ...props }: HeaderProps): Re
         <BookIcon className="h-8 w-8 fill-slate-12 transition group-hover:opacity-70" />
         <span className="text-xl font-bold text-slate-12 transition group-hover:opacity-70">Rule</span>
       </Link>
-      <UserIcon
-        emoji={accountSetting.iconEmoji}
-        backgroundColor={accountSetting.iconBackgroundColor}
-        size={{
-          initial: '2xl',
-          tablet: '3xl',
-        }}
-      />
+      <UserIcon emoji={accountSetting.iconEmoji} backgroundColor={accountSetting.iconBackgroundColor} size="3xl" />
     </div>
   </header>
 );
