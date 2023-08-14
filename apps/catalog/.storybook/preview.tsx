@@ -14,7 +14,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ThemeProvider attribute={themeDataAttribute} defaultTheme={defaultTheme}>
-        <div className={cn(fontFamily, 'bg-tomato-1 font-sans')}>
+        <div className={cn(fontFamily, 'font-sans')}>
           <Story />
         </div>
       </ThemeProvider>
