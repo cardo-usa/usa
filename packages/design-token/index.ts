@@ -1,3 +1,4 @@
+import type { DeepReadonly } from '@usa/type';
 import breakpointTokens from './breakpoint.json';
 import colorTokens from './color.json';
 
@@ -38,3 +39,22 @@ export const colors = {
   light: colorTokens.light,
   dark: colorTokens.dark,
 };
+
+type Fonts = DeepReadonly<
+  Record<
+    string,
+    {
+      weight: string[];
+      subsets: string[];
+      variable: `--${string}`;
+    }
+  >
+>;
+
+export const fonts = {
+  'noto-sans': {
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    variable: '--noto-sans',
+  },
+} as const satisfies Fonts;
