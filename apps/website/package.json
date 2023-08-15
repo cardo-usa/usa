@@ -19,6 +19,7 @@
     "test": "jest --silent=false --verbose false --passWithNoTests"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "1.0.4",
     "@usa/core": "workspace:*",
     "@usa/design-token": "workspace:*",
     "@usa/tailwind": "workspace:*",
