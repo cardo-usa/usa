@@ -41,8 +41,8 @@ importers:
         specifier: 14.0.0
         version: 14.0.0
       prettier:
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.0.2
+        version: 3.0.2
       rimraf:
         specifier: 5.0.1
         version: 5.0.1
@@ -129,8 +129,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/tsconfig
       chromatic:
-        specifier: 6.21.0
-        version: 6.21.0
+        specifier: 6.22.0
+        version: 6.22.0
       eslint-config-usa-nextjs:
         specifier: workspace:*
         version: link:../../packages/eslint/eslint-config-usa-nextjs
@@ -312,7 +312,7 @@ importers:
         version: 6.7.1(eslint@8.47.0)
       eslint-plugin-prettier:
         specifier: 5.0.0
-        version: 5.0.0(@types/eslint@8.44.2)(eslint-config-prettier@9.0.0)(eslint@8.47.0)(prettier@3.0.1)
+        version: 5.0.0(@types/eslint@8.44.2)(eslint-config-prettier@9.0.0)(eslint@8.47.0)(prettier@3.0.2)
       eslint-plugin-react:
         specifier: 7.33.1
         version: 7.33.1(eslint@8.47.0)
@@ -418,7 +418,7 @@ importers:
         version: 10.0.0(postcss@8.4.27)(stylelint@15.10.2)
       stylelint-prettier:
         specifier: 4.0.2
-        version: 4.0.2(prettier@3.0.1)(stylelint@15.10.2)
+        version: 4.0.2(prettier@3.0.2)(stylelint@15.10.2)
 
   packages/tailwind:
     dependencies:
@@ -6307,8 +6307,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chromatic@6.21.0:
-    resolution: {integrity: sha512-Nnp28jrhk6T4z1izFXQZVRG9Uivq5ZWibRJ3f/SbHUzJuWb1otHFqbUMomrYm770ar8ByIF09Mx+5VEW+RDrug==}
+  /chromatic@6.22.0:
+    resolution: {integrity: sha512-PBZAhTzjQvx+B4nXmEgvySmR9+a8hgt7zuTT3NhC0BT1Wf08T6gjnl4bZR5Dg5V4PfCeQvP5uROPS7QFdzZeyA==}
     hasBin: true
     dev: true
 
@@ -7562,7 +7562,7 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-prettier@5.0.0(@types/eslint@8.44.2)(eslint-config-prettier@9.0.0)(eslint@8.47.0)(prettier@3.0.1):
+  /eslint-plugin-prettier@5.0.0(@types/eslint@8.44.2)(eslint-config-prettier@9.0.0)(eslint@8.47.0)(prettier@3.0.2):
     resolution: {integrity: sha512-AgaZCVuYDXHUGxj/ZGu1u8H8CYgDY3iG6w5kUFw4AzMVXzB7VvbKgYR4nATIN+OvUrghMbiDLeimVjVY5ilq3w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -7579,7 +7579,7 @@ packages:
       '@types/eslint': 8.44.2
       eslint: 8.47.0
       eslint-config-prettier: 9.0.0(eslint@8.47.0)
-      prettier: 3.0.1
+      prettier: 3.0.2
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.5
     dev: true
@@ -11145,8 +11145,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.0.1:
-    resolution: {integrity: sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==}
+  /prettier@3.0.2:
+    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -12539,14 +12539,14 @@ packages:
       stylelint: 15.10.2
     dev: true
 
-  /stylelint-prettier@4.0.2(prettier@3.0.1)(stylelint@15.10.2):
+  /stylelint-prettier@4.0.2(prettier@3.0.2)(stylelint@15.10.2):
     resolution: {integrity: sha512-EoHnR2PiaWgpGtoI4VW7AzneMfwmwQsNwQ+3/E2k/a+ju5yO6rfPfop4vzPQKcJN4ZM1YbspEOPu88D8538sbg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       prettier: '>=3.0.0'
       stylelint: '>=15.8.0'
     dependencies:
-      prettier: 3.0.1
+      prettier: 3.0.2
       prettier-linter-helpers: 1.0.0
       stylelint: 15.10.2
     dev: true
