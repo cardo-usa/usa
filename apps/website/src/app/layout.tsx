@@ -6,6 +6,7 @@ import { colors } from '@usa/design-token';
 import { cn } from '@usa/tailwind';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { Header } from '@/module/root/ui/layout/header';
 import '@/style/global.css';
 
 type RootLayoutProps = {
@@ -17,6 +18,7 @@ const RootLayout = ({ children }: RootLayoutProps): ReactNode => (
     <head />
     <body className={cn(fontFamily, 'bg-tomato-1 font-sans')}>
       <ThemeProvider attribute="data-theme" enableSystem defaultTheme="system">
+        <Header className="fixed left-0 top-0 z-10" />
         <PageTransitionAnimationProvider>
           <main className="min-h-screen">{children}</main>
         </PageTransitionAnimationProvider>

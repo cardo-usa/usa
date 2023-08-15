@@ -12,6 +12,10 @@ const defaultConfig: Config = {
       sans: [fonts['m-plus-rounded-1c'].variable, ...defaultTheme.fontFamily.sans],
       chango: [fonts.chango.variable, ...defaultTheme.fontFamily.sans],
     },
+    fontWeight: {
+      normal: '400',
+      bold: '800',
+    },
     screens: {
       mobile: `${breakpoints.mobile.minWidth}px`,
       tablet: `${breakpoints.tablet.minWidth}px`,

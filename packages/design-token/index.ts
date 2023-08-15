@@ -70,7 +70,7 @@ export const fonts = {
     variable: '--chango',
   },
   'm-plus-rounded-1c': {
-    weight: ['400', '700'],
+    weight: ['400', '800'],
     subsets: ['latin'],
     variable: '--m-plus-rounded-1c',
   },

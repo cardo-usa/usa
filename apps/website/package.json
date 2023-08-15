@@ -24,6 +24,7 @@
     "@usa/tailwind": "workspace:*",
     "dotenv": "16.3.1",
     "framer-motion": "10.15.2",
+    "jotai": "2.3.1",
     "next": "13.4.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -38,6 +39,7 @@
     "@usa/prettier": "workspace:*",
     "@usa/stylelint": "workspace:*",
     "@usa/tsconfig": "workspace:*",
+    "@usa/type": "workspace:*",
     "eslint-config-usa-nextjs": "workspace:*"
   }
 }
