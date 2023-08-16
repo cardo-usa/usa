@@ -14,13 +14,13 @@ const buttonVariant = tv({
 type Props = {
   children: string;
   textColor: VariantProps<typeof buttonVariant>['textColor'];
-} & Omit<ComponentPropsWithoutRef<'button'>, 'className' | 'chilren'>;
+} & Omit<ComponentPropsWithoutRef<'button'>, 'className' | 'children'>;
 
 const Button: FC<Props> = forwardRef<HTMLButtonElement, Props>(({ children, textColor, ...props }, ref) => (
   <button
     type="button"
     ref={ref}
-    className={cn('rounded-lg border-tomato-7 bg-tomato-3 px-8 py-3 shadow-lg duration-200 hover:scale-105', buttonVariant({ textColor }))}
+    className={cn('rounded-lg bg-tomato-3 px-8 py-3 shadow-lg duration-200 hover:scale-105', buttonVariant({ textColor }))}
     {...props}
   >
     <p className="text-lg font-bold">{children}</p>
