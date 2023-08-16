@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { PiCopyBold } from 'react-icons/pi';
+import { BiCopy } from 'react-icons/bi';
 
 type CopyIconProps = Omit<ComponentPropsWithoutRef<'svg'>, 'children'>;
 
-export const CopyIcon = ({ ...props }: CopyIconProps): ReactNode => <PiCopyBold {...props} />;
+export const CopyIcon = ({ ...props }: CopyIconProps): ReactNode => <BiCopy {...props} />;
