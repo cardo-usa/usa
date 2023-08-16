@@ -12,8 +12,12 @@ const CreateRoom: FC<Props> = ({ closeButtonEvent, cancelButtonEvent, createButt
   return (
     <div className="flex h-[25rem] w-[50rem] flex-col space-y-8 rounded-2xl bg-pure px-10 py-8">
       <div className="flex h-10 w-full items-center justify-end">
-        <button type="button" onClick={closeButtonEvent}>
-          <CloseIcon className="h-8 w-8" />
+        <button
+          type="button"
+          className="group flex h-10 w-10 items-center justify-center rounded-full duration-200 hover:bg-slate-4"
+          onClick={closeButtonEvent}
+        >
+          <CloseIcon className="h-8 w-8 fill-slate-12" />
         </button>
       </div>
       <div className="flex h-44 w-full flex-col items-center justify-center space-y-4">
