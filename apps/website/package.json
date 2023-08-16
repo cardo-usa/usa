@@ -29,7 +29,8 @@
     "next": "13.4.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "0.32.4"
+    "sharp": "0.32.4",
+    "zod": "3.22.1"
   },
   "devDependencies": {
     "@storybook/react": "7.2.3",
