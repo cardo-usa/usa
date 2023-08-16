@@ -20,7 +20,7 @@ const Button: FC<Props> = forwardRef<HTMLButtonElement, Props>(({ children, text
   <button
     type="button"
     ref={ref}
-    className={cn('rounded-lg bg-tomato-3 px-8 py-3 shadow-lg duration-200 hover:scale-105', buttonVariant({ textColor }))}
+    className={cn('h-12 rounded-lg bg-tomato-3 px-8 py-2 shadow-lg duration-200 hover:scale-105', buttonVariant({ textColor }))}
     {...props}
   >
     <p className="text-lg font-bold">{children}</p>
