@@ -35,7 +35,7 @@ const ShareLink: FC<Props> = ({ url }) => {
       <div className="flex h-12 w-14 items-center justify-center rounded-l-xl bg-tomato-6">
         <LinkIcon className="h-6 w-6 -rotate-45 fill-slate-11" />
       </div>
-      <p className="h-12 w-[40rem] truncate bg-slate-3 px-3 py-1 text-center text-xl font-bold leading-10 text-slate-11/80">{url}</p>
+      <p className="h-12 w-[40rem] truncate bg-slate-3 px-3 py-1 text-start text-xl font-bold leading-10 text-slate-11/80">{url}</p>
       <div className="relative flex h-12 w-14 items-center justify-center rounded-r-xl bg-slate-3">
         <p className={cn('absolute -top-8 rounded-md bg-pure px-2 py-1 text-slate-12 outline outline-slate-7', CopiedVariant({ display: copied }))}>
           Copied!
