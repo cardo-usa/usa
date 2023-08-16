@@ -52,7 +52,7 @@ const ShareLink: FC<Props> = ({ url }) => {
             }, 100);
           }}
         >
-          <CopyIcon className="h-6 w-6 fill-slate-11" />
+          <CopyIcon className="h-6 w-6 fill-slate-11 transition hover:fill-slate-8" />
         </button>
       </div>
     </div>
