@@ -158,6 +158,9 @@ importers:
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
+      emoji-picker-react:
+        specifier: 4.4.11
+        version: 4.4.11(react@18.2.0)
       framer-motion:
         specifier: 10.15.2
         version: 10.15.2(react-dom@18.2.0)(react@18.2.0)
@@ -6219,6 +6222,11 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
+  /clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
@@ -6936,6 +6944,16 @@ packages:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
     engines: {node: '>=12'}
     dev: true
+
+  /emoji-picker-react@4.4.11(react@18.2.0):
+    resolution: {integrity: sha512-HPQd0mt8l4So8YMBWSwWmCRTMBGLyxVIevr3/4dvVLWlXfsakpwcDgtbNWialCSw/aWlpBchsVdr1asMZ9Dmbg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+    dev: false
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
