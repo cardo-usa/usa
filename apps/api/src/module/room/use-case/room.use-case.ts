@@ -4,4 +4,5 @@ import type { User, UserAccountSetting } from '@/module/user/domain/user.model';
 export interface RoomUseCaseInterface {
   verifyCanJoinRoom(roomId: Room['id']): Promise<boolean>;
   createRoom(userAccountSetting: UserAccountSetting): Promise<[Room, User]>;
+  updateRoomGameState(roomId: Room['id'], gameState: Room['gameState']): Promise<Room>;
 }
