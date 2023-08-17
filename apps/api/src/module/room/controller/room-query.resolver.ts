@@ -13,7 +13,7 @@ export class RoomQuery {
     private readonly roomUseCase: RoomUseCaseInterface,
   ) {}
 
-  @Query(() => Boolean)
+  @Query(() => Boolean, { nullable: false })
   async verifyCanJoinRoom(
     @Args('where', { type: () => RoomWhereUniqueInput })
     where: RoomWhereUniqueInput,
