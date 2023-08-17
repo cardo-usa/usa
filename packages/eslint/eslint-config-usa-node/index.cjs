@@ -26,6 +26,7 @@ module.exports = {
         fixStyle: "inline-type-imports",
       },
     ],
+    "class-methods-use-this": "off",
     "dot-notation": "off",
     "import/extensions": "off",
     "import/no-default-export": "error",
