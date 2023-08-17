@@ -14,4 +14,18 @@ export class RoomRepository implements RoomRepositoryInterface {
 
     return foundRoom && new Room(foundRoom);
   }
+
+  async findMany(roomIds: string[]): Promise<Room[]> {
+    const foundRooms = await this.prismaService.room.findMany({
+      where: { id: { in: roomIds } },
+    });
+
+    return foundRooms.map((foundRoom) => new Room(foundRoom));
+  }
+
+  async create(): Promise<Room> {
+    const createdRoom = await this.prismaService.room.create({});
+
+    return new Room(createdRoom);
+  }
 }
