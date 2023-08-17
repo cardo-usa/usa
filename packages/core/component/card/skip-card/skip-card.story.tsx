@@ -12,7 +12,7 @@ const meta: Meta<typeof SkipCard> = {
       control: {
         type: 'select',
       },
-      options: ['blue', 'red', 'green', 'yellow'] as ComponentPropsWithoutRef<typeof SkipCard>['color'][],
+      options: ['blue', 'red', 'green', 'yellow', 'any'] as ComponentPropsWithoutRef<typeof SkipCard>['color'][],
     },
   },
 };

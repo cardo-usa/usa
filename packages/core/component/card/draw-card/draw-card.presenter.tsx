@@ -2,7 +2,7 @@ import { cn, tv } from '@usa/tailwind';
 import type { ComponentPropsWithoutRef, FC } from 'react';
 
 type Props = {
-  color: 'red' | 'blue' | 'green' | 'yellow';
+  color: 'red' | 'blue' | 'green' | 'yellow' | 'any';
 } & ComponentPropsWithoutRef<'svg'>;
 
 const variant = tv({
@@ -12,6 +12,7 @@ const variant = tv({
       blue: 'fill-indigo-9',
       green: 'fill-green-9',
       yellow: 'fill-amber-9',
+      any: 'fill-slate-12',
     } satisfies Record<Props['color'], string>,
   },
 });

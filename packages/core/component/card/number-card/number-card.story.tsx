@@ -18,7 +18,7 @@ const meta: Meta<typeof NumberCard> = {
       control: {
         type: 'select',
       },
-      options: ['blue', 'red', 'green', 'yellow', 'black'] satisfies ComponentPropsWithoutRef<typeof NumberCard>['color'][],
+      options: ['blue', 'red', 'green', 'yellow', 'any'] satisfies ComponentPropsWithoutRef<typeof NumberCard>['color'][],
     },
   },
 };

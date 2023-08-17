@@ -12,7 +12,7 @@ const meta: Meta<typeof WildCard> = {
       control: {
         type: 'select',
       },
-      options: ['blue', 'red', 'green', 'yellow', 'black'] satisfies ComponentPropsWithoutRef<typeof WildCard>['color'][],
+      options: ['blue', 'red', 'green', 'yellow', 'any'] satisfies ComponentPropsWithoutRef<typeof WildCard>['color'][],
     },
   },
 };

@@ -12,7 +12,7 @@ const meta: Meta<typeof ReverseCard> = {
       control: {
         type: 'select',
       },
-      options: ['blue', 'red', 'green', 'yellow'] as ComponentPropsWithoutRef<typeof ReverseCard>['color'][],
+      options: ['blue', 'red', 'green', 'yellow', 'any'] as ComponentPropsWithoutRef<typeof ReverseCard>['color'][],
     },
   },
 };

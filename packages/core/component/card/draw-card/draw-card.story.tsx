@@ -12,7 +12,7 @@ const meta: Meta<typeof DrawCard> = {
       control: {
         type: 'select',
       },
-      options: ['blue', 'red', 'green', 'yellow'] satisfies ComponentPropsWithoutRef<typeof DrawCard>['color'][],
+      options: ['blue', 'red', 'green', 'yellow', 'any'] satisfies ComponentPropsWithoutRef<typeof DrawCard>['color'][],
     },
   },
 };
