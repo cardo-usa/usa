@@ -1,0 +1,30 @@
+ARG PORT
+ARG NODE_VERSION=18
+
+FROM alpine:3 as alpine
+
+FROM node:${NODE_VERSION}-bookworm-slim AS builder
+
+WORKDIR /usa/
+
+RUN yarn global add pnpm
+
+COPY ./ ./
+RUN pnpm install --frozen-lockfile
+RUN pnpm turbo --filter @usa/api build
+
+FROM gcr.io/distroless/nodejs:${NODE_VERSION}-debug AS runner
+ENV NODE_ENV=production
+
+WORKDIR /usa/
+
+COPY --from=alpine /lib/libz.so.1 /lib/libz.so.1
+COPY --from=alpine /lib/libc.musl-x86_64.so.1 /lib/libc.musl-x86_64.so.1
+COPY --from=builder /usa/node_modules/ ./node_modules/
+COPY --from=builder /usa/apps/api/node_modules/ ./apps/api/node_modules/
+COPY --from=builder /usa/apps/api/dist ./apps/api/dist
+
+WORKDIR /usa/apps/api/
+
+EXPOSE ${PORT}
+CMD ["./dist/main.js"]

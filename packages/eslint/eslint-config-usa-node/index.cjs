@@ -17,7 +17,7 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
     ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: "commonjs",
   },
   rules: {
     "@typescript-eslint/consistent-type-imports": [
@@ -26,6 +26,7 @@ module.exports = {
         fixStyle: "inline-type-imports",
       },
     ],
+    "dot-notation": "off",
     "import/extensions": "off",
     "import/no-default-export": "error",
     "import/no-extraneous-dependencies": ["error", { packageDir: ["./"] }],
@@ -50,6 +51,7 @@ module.exports = {
       },
     ],
     "import/prefer-default-export": "off",
+    "no-empty-function": "off",
     "no-useless-constructor": "off",
   },
   overrides: [
@@ -61,5 +63,14 @@ module.exports = {
         "import/prefer-default-export": "off",
       },
     },
+    {
+      files: ["./*.*js"],
+      extends: ["plugin:@typescript-eslint/disable-type-checked"],
+    },
   ],
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
+  },
 };

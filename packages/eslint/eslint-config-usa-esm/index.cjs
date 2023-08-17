@@ -64,13 +64,5 @@ module.exports = {
         "import/prefer-default-export": "off",
       },
     },
-    {
-      files: ["./**/*.story.*"],
-      rules: {
-        "import/no-default-export": "off",
-        "import/no-extraneous-dependencies": "off",
-        "import/prefer-default-export": "off",
-      },
-    },
   ],
 };
