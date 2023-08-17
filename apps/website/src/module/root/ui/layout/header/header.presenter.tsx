@@ -12,7 +12,7 @@ export type HeaderProps = Omit<ComponentPropsWithoutRef<'header'>, 'children'> &
 };
 
 export const Header = ({ accountSetting, className, ...props }: HeaderProps): ReactNode => (
-  <header className={cn('flex w-screen items-center justify-between p-3 tablet:p-6', className)} {...props}>
+  <header className={cn('flex w-screen items-center justify-between p-6', className)} {...props}>
     <nav aria-label="main navigation">
       <Link href="/">
         <Image src={BrandLogo} alt="A brand logo for USA." height={48} priority className="h-12 w-auto transition hover:opacity-70" />
@@ -22,7 +22,7 @@ export const Header = ({ accountSetting, className, ...props }: HeaderProps): Re
     <div className="flex items-center gap-6">
       <Link href="https://github.com/cardo-usa/usa/blob/main/doc/rule.md/" external className="group flex items-center gap-2">
         <BookIcon className="h-8 w-8 fill-slate-12 transition group-hover:opacity-70" />
-        <span className="text-xl font-bold text-slate-12 transition group-hover:opacity-70">Rule</span>
+        <span className="text-2xl font-bold text-slate-12 transition group-hover:opacity-70">Rule</span>
       </Link>
       <UserIcon emoji={accountSetting.iconEmoji} backgroundColor={accountSetting.iconBackgroundColor} size="3xl" />
     </div>
