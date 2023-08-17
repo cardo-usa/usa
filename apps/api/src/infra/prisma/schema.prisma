@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  GAME_MASTER
+  GENERAL
+}
+
+enum UserIconBackgroundColor {
+  TOMATO
+  VIOLET
+  INDIGO
+  CYAN
+  GREEN
+  ORANGE
+  BROWN
+  AMBER
+}
+
+enum CardType {
+  NUMBER
+  SKIP
+  REVERSE
+  DRAW
+  WILD
+}
+
+enum CardColor {
+  RED
+  BLUE
+  GREEN
+  YELLOW
+  ANY
+}
+
+type Card {
+  type   CardType
+  color  CardColor
+  number Int?
+}
+
+enum UserGameState {
+  IN_GAME
+  FINISHED
+}
+
+model User {
+  id                  String                  @id @default(auto()) @map("_id") @db.ObjectId
+  role                UserRole                @default(GENERAL)
+  name                String
+  iconEmoji           String                  @map("icon_emoji")
+  iconBackgroundColor UserIconBackgroundColor @map("icon_background_color")
+  joiningRoom         Room                    @relation(fields: [joiningRoomId], references: [id])
+  joiningRoomId       String                  @map("joining_room_id") @db.ObjectId
+  joinedAt            DateTime                @default(now()) @map("joined_at")
+
+  handCards  Card[]         @map("hand_cards")
+  isMyTurn   Boolean?       @map("is_my_turn")
+  gameState  UserGameState? @map("game_state")
+  logs       Log[]
+  finishedAt DateTime?      @map("finished_at")
+
+  @@map("users")
+}
+
+enum RoomGameState {
+  WANTED
+  READY
+  IN_GAME
+  FINISHED
+}
+
+model Room {
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
+  gameState RoomGameState @default(WANTED) @map("game_state")
+
+  deckCards     Card[] @map("deck_cards")
+  fieldCards    Card[] @map("field_cards")
+  logs          Log[]
+  finishedUsers User[]
+
+  @@map("rooms")
+}
+
+model Log {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  message   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @map("user_id") @db.ObjectId
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    String   @map("room_id") @db.ObjectId
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("logs")
+}
