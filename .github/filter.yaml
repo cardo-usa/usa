@@ -11,6 +11,7 @@ app:
 api:
   - .github/filter.yaml
   - .github/workflows/api-*.yaml
+  - .github/workflows/app-*.yaml
   - apps/api/**/*
   - packages/**/*
   - .npmrc
@@ -20,6 +21,7 @@ api:
 
 catalog:
   - .github/filter.yaml
+  - .github/workflows/app-*.yaml
   - .github/workflows/catalog-*.yaml
   - apps/catalog/**/*
   - apps/website/**/*
@@ -31,6 +33,7 @@ catalog:
 
 website:
   - .github/filter.yaml
+  - .github/workflows/app-*.yaml
   - .github/workflows/website-*.yaml
   - apps/website/**/*
   - packages/**/*
@@ -41,6 +44,7 @@ website:
 
 graphql:
   - .github/filter.yaml
+  - .github/workflows/app-*.yaml
   - .github/workflows/graphql-*.yaml
   - apps/api/**/*
   - packages/**/*
