@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import { PrismaClient, type Prisma } from '@prisma/client';
 import { match } from 'ts-pattern';
-import { EnvService } from '@/config/env/env.service';
+import { EnvService } from '@/common/service/env/env.service';
 
 @Injectable()
 export class PrismaService extends PrismaClient<Prisma.PrismaClientOptions, Prisma.LogLevel> implements OnModuleInit, OnModuleDestroy {

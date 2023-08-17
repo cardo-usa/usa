@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { CardObject } from '@/common/dto/object/card.object';
 import { RoomObject } from '@/module/room/controller/dto/object/room.object';
 import { IconBackgroundColorEnum } from '@/module/user/controller/dto/enum/icon-background-color.enum';
@@ -8,7 +8,7 @@ import type { User } from '@/module/user/domain/user.model';
 
 @ObjectType('User')
 export class UserObject implements Omit<User, 'joiningRoomId'> {
-  @Field(() => String, { nullable: false })
+  @Field(() => ID, { nullable: false })
   id!: string;
 
   @Field(() => RoleEnum, { nullable: false })

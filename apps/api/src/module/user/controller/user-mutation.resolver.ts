@@ -30,6 +30,8 @@ export class UserMutation {
       throw new Error(`Cannnot found Room with id ${where.id}.`);
     }
 
+    await this.userUseCase.publishUpdatedRoomAttenders(where.id, (roomAttenders) => ({ updatedRoomAttenders: roomAttenders }));
+
     return createdUser;
   }
 }
