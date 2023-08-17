@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DataLoaderCacheService } from '@/cache/data-loader-cache.service';
 import { InjectionToken } from '@/common/constant/injection-token';
+import { DataLoaderCacheService } from '@/common/service/cache/data-loader-cache.service';
 import { RoomDataLoader } from '@/module/room/dataloader/room.dataloader';
 import type { Room } from '@/module/room/domain/room.model';
 import { RoomRepositoryInterface } from '@/module/room/repository/room.repository';
