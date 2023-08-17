@@ -13,7 +13,7 @@ COPY ./ ./
 RUN pnpm install --frozen-lockfile
 RUN pnpm turbo --filter @usa/api build
 
-FROM gcr.io/distroless/nodejs:${NODE_VERSION} AS runner
+FROM gcr.io/distroless/nodejs:${NODE_VERSION}-debug AS runner
 ENV NODE_ENV=production
 
 WORKDIR /usa/
