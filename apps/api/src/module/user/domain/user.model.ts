@@ -4,7 +4,7 @@ type Role = 'GAME_MASTER' | 'GENERAL';
 
 type IconBackgroundColor = 'TOMATO' | 'VIOLET' | 'INDIGO' | 'CYAN' | 'GREEN' | 'ORANGE' | 'BROWN' | 'AMBER';
 
-type GameState = 'IN_GAME' | 'FINISHED';
+type UserGameState = 'IN_GAME' | 'FINISHED';
 
 export class User {
   readonly id: string;
@@ -23,7 +23,7 @@ export class User {
 
   readonly isMyTurn: boolean | null;
 
-  readonly gameState: GameState | null;
+  readonly gameState: UserGameState | null;
 
   readonly finishedAt: Date | null;
 
@@ -36,7 +36,7 @@ export class User {
     joinedAt: Date;
     handCards: Card[];
     isMyTurn: boolean | null;
-    gameState: GameState | null;
+    gameState: UserGameState | null;
     finishedAt: Date | null;
   }) {
     this.id = args.id;

@@ -1,9 +1,9 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 // eslint-disable-next-line no-shadow
-export enum GameStateEnum {
+export enum UserGameStateEnum {
   IN_GAME = 'IN_GAME',
   FINISHED = 'FINISHED',
 }
 
-registerEnumType(GameStateEnum, { name: 'GameState' });
+registerEnumType(UserGameStateEnum, { name: 'UserGameState' });
