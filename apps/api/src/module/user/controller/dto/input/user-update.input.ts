@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, ID, InputType } from '@nestjs/graphql';
 import { CardObject } from '@/common/dto/object/card.object';
 import { IconBackgroundColorEnum } from '@/module/user/controller/dto/enum/icon-background-color.enum';
 import { RoleEnum } from '@/module/user/controller/dto/enum/role.enum';
@@ -7,7 +7,7 @@ import type { User } from '@/module/user/domain/user.model';
 
 @InputType()
 export class UserUpdateInput implements Partial<User> {
-  @Field(() => String, { nullable: true })
+  @Field(() => ID, { nullable: true })
   id?: string;
 
   @Field(() => RoleEnum, { nullable: true })
