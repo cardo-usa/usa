@@ -23,9 +23,9 @@
     "fmt:fix": "prettier --write .",
     "test": "cross-env NODE_ENV=test jest --silent=false --verbose false --passWithNoTests",
     "prisma:gen": "prisma generate --schema ./src/infra/prisma/schema.prisma",
-    "prisma:seed:dev": "cross-env NODE_ENV=development ts-node ./src/infra/prisma/seed/main.seed.ts",
-    "prisma:studio:dev": "cross-env NODE_ENV=development prisma studio --schema ./src/infra/prisma/schema.prisma",
-    "prisma:studio:prod": "cross-env NODE_ENV=production prisma studio --schema ./src/infra/prisma/schema.prisma",
+    "prisma:seed:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development ts-node ./src/infra/prisma/seed/main.seed.ts",
+    "prisma:studio:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma studio --schema ./src/infra/prisma/schema.prisma",
+    "prisma:studio:prod": "dotenv -e .env.production -- cross-env NODE_ENV=production prisma studio --schema ./src/infra/prisma/schema.prisma",
     "apollo:rover": "rover graph publish usa@current --schema ./schema.gql"
   },
   "dependencies": {

@@ -1,9 +1,13 @@
 ARG PORT
 ARG NODE_VERSION=18
+ARG TURBO_TEAM
+ARG TURBO_TOKEN
 
 FROM alpine:3 as alpine
 
 FROM node:${NODE_VERSION}-bookworm-slim AS builder
+ENV TURBO_TEAM=${TURBO_TEAM}
+ENV TURBO_TOKEN=${TURBO_TOKEN}
 
 WORKDIR /usa/
 
@@ -13,7 +17,7 @@ COPY ./ ./
 RUN pnpm install --frozen-lockfile
 RUN pnpm turbo --filter @usa/api build
 
-FROM gcr.io/distroless/nodejs:${NODE_VERSION}-debug AS runner
+FROM gcr.io/distroless/nodejs:${NODE_VERSION} AS runner
 ENV NODE_ENV=production
 
 WORKDIR /usa/
