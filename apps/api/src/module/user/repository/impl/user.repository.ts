@@ -15,7 +15,29 @@ export class UserRepository implements UserRepositoryInterface {
     return foundUser && new User(foundUser);
   }
 
-  async update(userId: string, user: User): Promise<User> {
+  async findManyByRoomIds(roomIds: string[]): Promise<User[]> {
+    const foundUsers = await this.prismaService.user.findMany({
+      where: { joiningRoomId: { in: roomIds } },
+    });
+
+    return foundUsers.map((user) => new User(user));
+  }
+
+  async create(user: User): Promise<User> {
+    const createdUser = await this.prismaService.user.create({
+      data: {
+        ...user,
+        handCards: user.handCards ?? undefined,
+      },
+    });
+
+    return new User(createdUser);
+  }
+
+  async update(
+    userId: string,
+    user: Partial<Omit<User, 'id' | 'handCards'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
+  ): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
       where: { id: userId },
       data: user,
