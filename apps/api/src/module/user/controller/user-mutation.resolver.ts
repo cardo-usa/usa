@@ -1,9 +1,9 @@
 import { Inject, Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { UserUpdateGameStateInput } from './dto/input/user-update-game-state.input';
-import { UserWhereUniqueInput } from './dto/input/user-where-unique.input';
+import { UserAccountSettingInput } from './dto/input/user-account-setting.input';
 import { UserObject } from './dto/object/user.object';
 import { InjectionToken } from '@/common/constant/injection-token';
+import { RoomWhereUniqueInput } from '@/module/room/controller/dto/input/room-where-unique.input';
 import type { User } from '@/module/user/domain/user.model';
 import { UserUseCaseInterface } from '@/module/user/use-case/user.use-case';
 
@@ -17,16 +17,19 @@ export class UserMutation {
   ) {}
 
   @Mutation(() => UserObject)
-  async updateUserGameState(
-    @Args('where', { type: () => UserWhereUniqueInput })
-    where: UserWhereUniqueInput,
-    @Args('data', { type: () => UserUpdateGameStateInput })
-    data: UserUpdateGameStateInput,
+  async joinRoom(
+    @Args('where', { type: () => RoomWhereUniqueInput })
+    where: RoomWhereUniqueInput,
+    @Args('data', { type: () => UserAccountSettingInput })
+    accountSetting: UserAccountSettingInput,
   ): Promise<User> {
-    this.logger.log(`${this.updateUserGameState.name} called`);
+    this.logger.log(`${this.joinRoom.name} called`);
 
-    const updatedUser = await this.userUseCase.updateGameState(where.id, data.gameState);
+    const createdUser = await this.userUseCase.joinRoom(accountSetting, where.id);
+    if (createdUser === null) {
+      throw new Error(`Cannnot found Room with id ${where.id}.`);
+    }
 
-    return updatedUser;
+    return createdUser;
   }
 }

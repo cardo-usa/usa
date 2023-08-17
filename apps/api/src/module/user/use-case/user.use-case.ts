@@ -1,6 +1,7 @@
-import type { User } from '@/module/user/domain/user.model';
+import type { Room } from '@/module/room/domain/room.model';
+import type { User, UserAccountSetting } from '@/module/user/domain/user.model';
 
 export interface UserUseCaseInterface {
-  find(userId: string): Promise<User | null>;
-  updateGameState(userId: string, gameState: NonNullable<User['gameState']>): Promise<User>;
+  find(userId: User['id']): Promise<User | null>;
+  joinRoom(userAccountSetting: UserAccountSetting, roomId: Room['id']): Promise<User | null>;
 }
