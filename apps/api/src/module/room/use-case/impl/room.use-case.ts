@@ -19,7 +19,7 @@ export class RoomUseCase implements RoomUseCaseInterface {
     private readonly dataLoaderCacheService: DataLoaderCacheService<Room, string>,
   ) {}
 
-  async verifyCanJoinRoom(roomId: string): Promise<boolean> {
+  async verifyCanJoinRoom(roomId: Room['id']): Promise<boolean> {
     const foundRoom = await this.roomRepository.find(roomId);
 
     if (foundRoom !== null) {

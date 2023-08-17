@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from '@/infra/prisma/prisma.service';
+import type { Room } from '@/module/room/domain/room.model';
 import { User } from '@/module/user/domain/user.model';
 import type { UserRepositoryInterface } from '@/module/user/repository/user.repository';
 
@@ -7,7 +8,7 @@ import type { UserRepositoryInterface } from '@/module/user/repository/user.repo
 export class UserRepository implements UserRepositoryInterface {
   constructor(@Inject(PrismaService) private readonly prismaService: PrismaService) {}
 
-  async find(userId: string): Promise<User | null> {
+  async find(userId: User['id']): Promise<User | null> {
     const foundUser = await this.prismaService.user.findUnique({
       where: { id: userId },
     });
@@ -15,7 +16,7 @@ export class UserRepository implements UserRepositoryInterface {
     return foundUser && new User(foundUser);
   }
 
-  async findManyByRoomIds(roomIds: string[]): Promise<User[]> {
+  async findManyByRoomIds(roomIds: Room['id'][]): Promise<User[]> {
     const foundUsers = await this.prismaService.user.findMany({
       where: { joiningRoomId: { in: roomIds } },
     });
@@ -35,7 +36,7 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async update(
-    userId: string,
+    userId: User['id'],
     user: Partial<Omit<User, 'id' | 'handCards'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
   ): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
