@@ -23,9 +23,10 @@ const baseConfig: ApolloDriverConfig = {
 
 const createDevelopmentConfig = (): ApolloDriverConfig => baseConfig;
 
-const createProductionConfig = (envService: EnvService): ApolloDriverConfig => ({
+const createProductionConfig = (): ApolloDriverConfig => ({
   ...baseConfig,
-  apollo: envService.ApolloStudioConfig,
+  // TODO: Uncomment this when Apollo Studio is ready
+  // apollo: envService.ApolloStudioConfig,
 });
 
 const createTestConfig = (): ApolloDriverConfig => baseConfig;
@@ -33,7 +34,7 @@ const createTestConfig = (): ApolloDriverConfig => baseConfig;
 const gqlFactory = (envService: EnvService): ApolloDriverConfig =>
   match(envService.NodeEnv)
     .with('development', () => createDevelopmentConfig())
-    .with('production', () => createProductionConfig(envService))
+    .with('production', () => createProductionConfig())
     .with('test', () => createTestConfig())
     .otherwise(() => createDevelopmentConfig());
 
