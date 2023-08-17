@@ -38,3 +38,13 @@ website:
   - package.json
   - pnpm-workspace.yaml
   - turbo.json
+
+graphql:
+  - .github/filter.yaml
+  - .github/workflows/graphql-*.yaml
+  - apps/api/**/*
+  - packages/**/*
+  - .npmrc
+  - package.json
+  - pnpm-workspace.yaml
+  - turbo.json
