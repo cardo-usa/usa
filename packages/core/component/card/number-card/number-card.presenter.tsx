@@ -1,10 +1,10 @@
 import { cn, tv } from '@usa/tailwind';
-import type { FC } from 'react';
+import type { ComponentPropsWithoutRef, FC } from 'react';
 
 type Props = {
   number: number;
   color: 'red' | 'blue' | 'green' | 'yellow' | 'black';
-};
+} & ComponentPropsWithoutRef<'svg'>;
 
 const variant = tv({
   variants: {
@@ -25,9 +25,9 @@ const variant = tv({
   },
 });
 
-const NumberCard: FC<Props> = ({ number, color }) => {
+const NumberCard: FC<Props> = ({ number, color, ...props }) => {
   return (
-    <svg width="230" height="343" viewBox="0 0 230 343" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="230" height="343" viewBox="0 0 230 343" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <rect x="1" y="1" width="228" height="341" rx="15" className="fill-pure" />
       <g clipPath="url(#clip0_53_779)">
         <rect x="20" y="20" width="190" height="303" rx="8" className={cn(variant({ outerColor: color }))} />
