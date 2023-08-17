@@ -9,8 +9,8 @@ const defaultConfig: Config = {
   theme: {
     colors,
     fontFamily: {
-      sans: [fonts['m-plus-rounded-1c'].variable, ...defaultTheme.fontFamily.sans],
-      chango: [fonts.chango.variable, ...defaultTheme.fontFamily.sans],
+      sans: [`var(${fonts['m-plus-rounded-1c'].variable})`, ...defaultTheme.fontFamily.sans],
+      chango: [`var(${fonts.chango.variable})`, ...defaultTheme.fontFamily.sans],
     },
     fontWeight: {
       normal: '400',
