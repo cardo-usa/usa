@@ -2,7 +2,7 @@ import { Inject, Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { UserUpdateGameStateInput } from './dto/input/user-update-game-state.input';
 import { UserWhereUniqueInput } from './dto/input/user-where-unique.input';
-import { UserObject } from './dto/object/user-object';
+import { UserObject } from './dto/object/user.object';
 import { InjectionToken } from '@/common/constant/injection-token';
 import type { User } from '@/module/user/domain/user.model';
 import { UserUseCaseInterface } from '@/module/user/use-case/user.use-case';

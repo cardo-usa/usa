@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { CardObject } from '@/common/dto/object/card.object';
-import { RoomObject } from '@/module/room/controller/dto/object/room-object';
+import { RoomObject } from '@/module/room/controller/dto/object/room.object';
 import { IconBackgroundColorEnum } from '@/module/user/controller/dto/enum/icon-background-color.enum';
 import { RoleEnum } from '@/module/user/controller/dto/enum/role.enum';
 import { UserGameStateEnum } from '@/module/user/controller/dto/enum/user-game-state.enum';
