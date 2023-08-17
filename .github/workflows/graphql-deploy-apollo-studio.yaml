@@ -1,0 +1,87 @@
+name: graphql deploy apollo studio
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DATABASE_URL: mongodb://localhost:27017/test
+  MONGODB_VERSION: 6
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      graphql: ${{ steps.changes.outputs.graphql }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: check for file changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          token: ${{ github.token }}
+          filters: .github/filter.yaml
+
+  deploy-apollo-studio:
+    runs-on: ubuntu-latest
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+    needs: [filter]
+    if: needs.filter.outputs.graphql == 'true'
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup mongodb
+        uses: supercharge/mongodb-github-action@v1
+        with:
+          mongodb-version: ${{ env.MONGODB_VERSION }}
+          mongodb-port: 27017
+          mongodb-db: test
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: restore pnpm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ needs.install.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-dependencies-
+
+      - name: install
+        run: pnpm install --frozen-lockfile
+
+      - name: setup prisma
+        run: pnpm turbo run generate --filter @usa/api
+
+      - name: generate graphql schema
+        run: timeout 15 pnpm api dev
+        continue-on-error: true
+
+      - name: publish
+        run: pnpm api apollo:rover
+
+  app-test-check:
+    runs-on: ubuntu-latest
+    needs: [deploy-apollo-studio]
+    if: ${{ ! failure() }}
+    steps:
+      - name: check
+        run: echo "test is successfully executed."

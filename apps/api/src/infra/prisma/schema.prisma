@@ -79,11 +79,11 @@ enum RoomGameState {
 model Room {
   id        String        @id @default(auto()) @map("_id") @db.ObjectId
   gameState RoomGameState @default(WANTED) @map("game_state")
+  attenders User[]
 
-  deckCards     Card[] @map("deck_cards")
-  fieldCards    Card[] @map("field_cards")
-  logs          Log[]
-  finishedUsers User[]
+  deckCards  Card[] @map("deck_cards")
+  fieldCards Card[] @map("field_cards")
+  logs       Log[]
 
   @@map("rooms")
 }

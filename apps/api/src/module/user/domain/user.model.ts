@@ -1,4 +1,5 @@
 import type { Card } from '@/common/model/card.model';
+import type { Room } from '@/module/room/domain/room.model';
 
 type Role = 'GAME_MASTER' | 'GENERAL';
 
@@ -17,9 +18,11 @@ export class User {
 
   readonly iconBackgroundColor: IconBackgroundColor;
 
+  readonly joiningRoomId: Room['id'];
+
   readonly joinedAt: Date;
 
-  readonly handCards: Card[];
+  readonly handCards: Card[] | null;
 
   readonly isMyTurn: boolean | null;
 
@@ -33,8 +36,9 @@ export class User {
     name: string;
     iconEmoji: string;
     iconBackgroundColor: IconBackgroundColor;
+    joiningRoomId: Room['id'];
     joinedAt: Date;
-    handCards: Card[];
+    handCards: Card[] | null;
     isMyTurn: boolean | null;
     gameState: UserGameState | null;
     finishedAt: Date | null;
@@ -44,6 +48,7 @@ export class User {
     this.name = args.name;
     this.iconEmoji = args.iconEmoji;
     this.iconBackgroundColor = args.iconBackgroundColor;
+    this.joiningRoomId = args.joiningRoomId;
     this.joinedAt = args.joinedAt;
     this.handCards = args.handCards;
     this.isMyTurn = args.isMyTurn;
@@ -51,3 +56,5 @@ export class User {
     this.finishedAt = args.finishedAt;
   }
 }
+
+export type UserAccountSetting = Pick<User, 'name' | 'iconEmoji' | 'iconBackgroundColor'>;
