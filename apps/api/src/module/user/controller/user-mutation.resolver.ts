@@ -74,4 +74,21 @@ export class UserMutation {
 
     return updatedUser;
   }
+
+  @Mutation(() => UserObject)
+  async exitRoom(
+    @Args('where', { type: () => UserWhereUniqueInput })
+    where: UserWhereUniqueInput,
+  ): Promise<User> {
+    this.logger.log(`${this.exitRoom.name} called`);
+
+    const updatedUser = await this.userUseCase.exitRoom(where.id);
+    if (updatedUser === null) {
+      throw new Error(`Cannnot find User with id ${where.id}.`);
+    }
+
+    await this.roomPublishUseCase.publishUpdatedRoom(updatedUser.joiningRoomId, (room) => ({ updatedRoom: room }));
+
+    return updatedUser;
+  }
 }

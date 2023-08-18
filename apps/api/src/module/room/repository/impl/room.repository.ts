@@ -37,4 +37,12 @@ export class RoomRepository implements RoomRepositoryInterface {
 
     return new Room(updatedRoom);
   }
+
+  async delete(roomId: Room['id']): Promise<Room> {
+    const deletedRoom = await this.prismaService.room.delete({
+      where: { id: roomId },
+    });
+
+    return new Room(deletedRoom);
+  }
 }

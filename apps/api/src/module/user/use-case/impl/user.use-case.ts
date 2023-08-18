@@ -37,6 +37,22 @@ export class UserUseCase implements UserUseCaseInterface {
     return createdUser;
   }
 
+  async exitRoom(userId: User['id']): Promise<User | null> {
+    const foundUser = await this.userRepository.find(userId);
+    if (foundUser === null) {
+      return null;
+    }
+
+    const deletedUser = await this.userRepository.delete(userId);
+
+    const foundUsers = await this.userRepository.findManyByRoomId(foundUser.joiningRoomId);
+    if (foundUsers.length === 0) {
+      await this.roomRepository.delete(foundUser.joiningRoomId);
+    }
+
+    return deletedUser;
+  }
+
   async drawCardsFromDeckCards(userId: User['id'], n: number, shouldTransitionTurn: boolean): Promise<User | null> {
     const foundUser = await this.userRepository.find(userId);
     if (foundUser === null) {
@@ -62,7 +78,7 @@ export class UserUseCase implements UserUseCaseInterface {
     });
 
     if (shouldTransitionTurn) {
-      const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(foundRoom.id);
+      const orderedUsers = await this.userRepository.findManyByRoomIdOrderedByJoinedAt(foundRoom.id);
 
       const currentUserIndex = orderedUsers.findIndex((user) => user.id === updatedUser.id);
       if (currentUserIndex === -1) {
@@ -137,7 +153,7 @@ export class UserUseCase implements UserUseCaseInterface {
       fieldCards: [...foundRoom.fieldCards, putCard],
     });
 
-    const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(foundRoom.id);
+    const orderedUsers = await this.userRepository.findManyByRoomIdOrderedByJoinedAt(foundRoom.id);
 
     const updatedUserOrNull = await match(putCard.type)
       .with('NUMBER', () => this.numberCardEffect(userId, orderedUsers))

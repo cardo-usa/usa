@@ -96,7 +96,7 @@ export class RoomUseCase implements RoomUseCaseInterface {
       fieldCards: [fieldCard],
     });
 
-    const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(roomId);
+    const orderedUsers = await this.userRepository.findManyByRoomIdOrderedByJoinedAt(roomId);
 
     await Promise.all(
       orderedUsers.map(async (user, index) => {
@@ -107,5 +107,11 @@ export class RoomUseCase implements RoomUseCaseInterface {
     );
 
     return updatedRoom;
+  }
+
+  async getResult(roomId: Room['id']): Promise<User[]> {
+    const foundUsers = await this.userRepository.findManyOrderedByFinishedAt(roomId);
+
+    return foundUsers;
   }
 }
