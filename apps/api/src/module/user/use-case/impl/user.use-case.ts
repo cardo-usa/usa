@@ -36,7 +36,7 @@ export class UserUseCase implements UserUseCaseInterface {
     return createdUser;
   }
 
-  async drawCardFromDeckCards(userId: User['id'], n: number): Promise<User | null> {
+  async drawCardsFromDeckCards(userId: User['id'], n: number): Promise<User | null> {
     const foundUser = await this.userRepository.find(userId);
     if (foundUser === null) {
       return null;

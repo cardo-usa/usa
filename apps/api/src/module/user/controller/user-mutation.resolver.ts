@@ -39,10 +39,10 @@ export class UserMutation {
   }
 
   @Mutation(() => UserObject)
-  async drawCardFromDeckCards(@Args('userId', { type: () => String }) userId: string, @Args('n', { type: () => Number }) n: number): Promise<User> {
-    this.logger.log(`${this.drawCardFromDeckCards.name} called`);
+  async drawCardsFromDeckCards(@Args('userId', { type: () => String }) userId: string, @Args('n', { type: () => Number }) n: number): Promise<User> {
+    this.logger.log(`${this.drawCardsFromDeckCards.name} called`);
 
-    const updatedUser = await this.userUseCase.drawCardFromDeckCards(userId, n);
+    const updatedUser = await this.userUseCase.drawCardsFromDeckCards(userId, n);
     if (updatedUser === null) {
       throw new Error(`Cannnot find User with id ${userId}.`);
     }
