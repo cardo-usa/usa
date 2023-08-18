@@ -142,6 +142,13 @@ export class UserUseCase implements UserUseCaseInterface {
 
     updatedUser = updatedUserOrNull;
 
+    if (updatedUser.shouldFinish) {
+      updatedUser = await this.userRepository.update(userId, {
+        gameState: 'FINISHED',
+        finishedAt: new Date(),
+      });
+    }
+
     return updatedUser;
   }
 

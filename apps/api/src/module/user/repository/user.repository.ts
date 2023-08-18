@@ -6,9 +6,9 @@ export interface UserRepositoryInterface {
   findManyByRoomId(roomId: Room['id']): Promise<User[]>;
   findManyByRoomIdEnsureOrder(roomId: Room['id']): Promise<User[]>;
   findManyByRoomIds(roomIds: Room['id'][]): Promise<User[]>;
-  create(user: Omit<User, 'id' | 'joinedAt' | 'handCards' | 'isMyTurn' | 'gameState' | 'finishedAt'>): Promise<User>;
+  create(user: Omit<User, 'id' | 'joinedAt' | 'handCards' | 'isMyTurn' | 'gameState' | 'finishedAt' | 'shouldFinish'>): Promise<User>;
   update(
     userId: User['id'],
-    user: Partial<Omit<User, 'id' | 'handCards'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
+    user: Partial<Omit<User, 'id' | 'handCards' | 'shouldFinish'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
   ): Promise<User>;
 }
