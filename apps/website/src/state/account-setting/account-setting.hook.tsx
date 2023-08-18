@@ -1,4 +1,4 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { accountSettingAtom, accountIdSettingAtom } from './account-setting.atom';
 
 export const useAccountSetting = () => {
@@ -13,7 +13,7 @@ export const useAccountSettingMutator = () => {
   return { setAccountSetting };
 };
 
-export const useAccountIdSetting = () => {
+export const useAccountIdSettingValue = () => {
   const accountIdSetting = useAtomValue(accountIdSettingAtom);
   return { accountIdSetting };
 };
@@ -21,4 +21,9 @@ export const useAccountIdSetting = () => {
 export const useAccountIdSettingMutator = () => {
   const setAccountIdSetting = useSetAtom(accountIdSettingAtom);
   return { setAccountIdSetting };
+};
+
+export const useAccountIdSettingState = () => {
+  const accountIdSetting = useAtom(accountIdSettingAtom);
+  return accountIdSetting;
 };
