@@ -1,15 +1,11 @@
-name: graphql deploy apollo studio
+name: graphql commit schema
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 env:
+  node-version: 18
+  mongodb-version: 6
   DATABASE_URL: mongodb://localhost:27017/test
-  MONGODB_VERSION: 6
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
   filter:
@@ -22,6 +18,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: check for file changes
         uses: dorny/paths-filter@v2
@@ -30,20 +28,22 @@ jobs:
           token: ${{ github.token }}
           filters: .github/filter.yaml
 
-  deploy-apollo-studio:
+  commit:
     runs-on: ubuntu-latest
-    env:
-      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
     needs: filter
     if: needs.filter.outputs.graphql == 'true'
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha }}
+          token: ${{ secrets.PAT }}
 
       - name: setup mongodb
-        uses: supercharge/mongodb-github-action@v1
+        uses: supercharge/mongodb-github-action@v1.9.0
         with:
-          mongodb-version: ${{ env.MONGODB_VERSION }}
+          mongodb-version: ${{ env.mongodb-version }}
           mongodb-port: 27017
           mongodb-db: test
 
@@ -76,15 +76,25 @@ jobs:
         run: pnpm turbo run generate --filter @usa/api
 
       - name: generate graphql schema
-        run: timeout 15 pnpm api dev
+        run: seq 2 | timeout 30 xargs -P 2 -I {} sh .github/workflows/script/graphql-commit-schema.sh {}
         continue-on-error: true
 
-      - name: publish
-        run: pnpm api apollo:rover
+      - name: commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --name-only | grep -q "./apps/website/graphql.schema.json"; then \
+            git add ./apps/website/graphql.schema.json; \
+            git commit -m "actions: 🤖 (graphql) updated graphql schema"; \
+            git push origin HEAD:${GITHUB_REF} --force; \
+            echo "Committed changes to GraphQL schema"; \
+          else \
+            echo "No changes detected in GraphQL schema"; \
+          fi
 
-  app-test-check:
+  graphql-commit-schema-check:
     runs-on: ubuntu-latest
-    needs: deploy-apollo-studio
+    needs: commit
     if: ${{ ! failure() }}
     steps:
       - name: check
