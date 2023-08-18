@@ -1,0 +1,32 @@
+subscription UpdatedRoom($where: RoomWhereUniqueInput!) {
+  updatedRoom(where: $where) {
+    attenders {
+      finishedAt
+      gameState
+      handCards {
+        color
+        number
+        type
+      }
+      iconBackgroundColor
+      iconEmoji
+      id
+      isMyTurn
+      joinedAt
+      name
+      role
+    }
+    deckCards {
+      color
+      number
+      type
+    }
+    fieldCards {
+      color
+      number
+      type
+    }
+    gameState
+    id
+  }
+}
