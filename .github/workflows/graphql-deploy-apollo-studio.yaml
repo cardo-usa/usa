@@ -58,10 +58,14 @@ jobs:
         with:
           run_install: false
 
-      - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+      - name: setup pnpm environment variable
+        id: pnpm-env
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: cache pnpm dependencies
+        uses: actions/cache@v3
         with:
-          path: ${{ needs.install.outputs.STORE_PATH }}
+          path: ${{ steps.pnpm-env.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-pnpm-dependencies-
 

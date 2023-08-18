@@ -28,4 +28,13 @@ export class RoomRepository implements RoomRepositoryInterface {
 
     return new Room(createdRoom);
   }
+
+  async update(roomId: Room['id'], room: Partial<Omit<Room, 'id' | 'isWanted'>>): Promise<Room> {
+    const updatedRoom = await this.prismaService.room.update({
+      where: { id: roomId },
+      data: room,
+    });
+
+    return new Room(updatedRoom);
+  }
 }

@@ -44,4 +44,12 @@ export class RoomUseCase implements RoomUseCaseInterface {
 
     return [createdRoom, createdUser];
   }
+
+  async updateRoomGameState(roomId: Room['id'], gameState: Room['gameState']): Promise<Room> {
+    const updatedRoom = await this.roomRepository.update(roomId, { gameState });
+
+    this.dataLoaderCacheService.prime(this.roomDataLoader, updatedRoom);
+
+    return updatedRoom;
+  }
 }
