@@ -22,7 +22,7 @@ export class UserQuery {
   ): Promise<User | null> {
     this.logger.log(`${this.findUser.name} called`);
 
-    const foundUser = await this.userUseCase.find(where.id);
+    const foundUser = await this.userUseCase.findUser(where.id);
 
     return foundUser;
   }

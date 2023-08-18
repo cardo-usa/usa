@@ -1,6 +1,7 @@
 import { Inject, Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { UserAccountSettingInput } from './dto/input/user-account-setting.input';
+import { UserUpdateAccountSettingInput } from './dto/input/user-update-account-setting.input';
 import { UserObject } from './dto/object/user.object';
 import { InjectionToken } from '@/common/constant/injection-token';
 import { RoomWhereUniqueInput } from '@/module/room/controller/dto/input/room-where-unique.input';
@@ -18,6 +19,25 @@ export class UserMutation {
     @Inject(InjectionToken.ROOM_PUBLISH_USE_CASE)
     private readonly roomPublishUseCase: RoomPublishUseCaseInterface,
   ) {}
+
+  @Mutation(() => UserObject)
+  async updateUserAccountSetting(
+    @Args('where', { type: () => RoomWhereUniqueInput })
+    where: RoomWhereUniqueInput,
+    @Args('data', { type: () => UserUpdateAccountSettingInput })
+    accountSetting: UserUpdateAccountSettingInput,
+  ): Promise<User> {
+    this.logger.log(`${this.updateUserAccountSetting.name} called`);
+
+    const updatedUser = await this.userUseCase.updateUserAccountSetting(where.id, accountSetting);
+    if (updatedUser === null) {
+      throw new Error(`Cannnot find User with id ${where.id}.`);
+    }
+
+    await this.roomPublishUseCase.publishUpdatedRoom(where.id, (room) => ({ updatedRoom: room }));
+
+    return updatedUser;
+  }
 
   @Mutation(() => UserObject)
   async joinRoom(
