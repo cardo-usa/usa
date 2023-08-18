@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { initialCards } from '@/common/constant/initial-cards';
 import { InjectionToken } from '@/common/constant/injection-token';
+import { shuffleCards } from '@/common/model/card.model';
 import { DataLoaderCacheService } from '@/common/service/cache/data-loader-cache.service';
 import { RoomDataLoader } from '@/module/room/dataloader/room.dataloader';
 import type { Room } from '@/module/room/domain/room.model';
@@ -61,5 +63,39 @@ export class RoomUseCase implements RoomUseCaseInterface {
     const canJoinRoom = foundRoom?.isWanted ?? false;
 
     return canJoinRoom;
+  }
+
+  async initializeGame(roomId: Room['id']): Promise<Room | null> {
+    const foundRoom = await this.roomRepository.find(roomId);
+    if (foundRoom?.gameState !== 'READY') {
+      throw new Error('Room is not ready to start the game');
+    }
+
+    const shuffledCards = shuffleCards(initialCards);
+    const attenders = await this.userRepository.findManyByRoomId(roomId);
+    const mappedDealtCards = attenders.map(() => shuffledCards.splice(0, 7));
+
+    await Promise.all(
+      attenders.map(async (attender, index) => {
+        await this.userRepository.update(attender.id, {
+          handCards: mappedDealtCards[index],
+        });
+      }),
+    );
+
+    const fieldCard = shuffledCards.shift();
+    if (fieldCard === undefined) {
+      throw new Error('fieldCard is undefined');
+    }
+
+    const deckCards = shuffledCards;
+
+    const updatedRoom = await this.roomRepository.update(roomId, {
+      gameState: 'IN_GAME',
+      deckCards,
+      fieldCards: [fieldCard],
+    });
+
+    return updatedRoom;
   }
 }
