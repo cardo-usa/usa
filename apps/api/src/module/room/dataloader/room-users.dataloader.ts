@@ -1,6 +1,6 @@
 import { Inject, Injectable, Scope } from '@nestjs/common';
-import { BaseDataLoader } from '@/cache/base.dataloader';
 import { InjectionToken } from '@/common/constant/injection-token';
+import { BaseDataLoader } from '@/common/service/cache/base.dataloader';
 import type { Room } from '@/module/room/domain/room.model';
 import type { User } from '@/module/user/domain/user.model';
 import { UserRepositoryInterface } from '@/module/user/repository/user.repository';

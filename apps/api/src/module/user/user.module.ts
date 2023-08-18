@@ -1,6 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { UserMutation } from './controller/user-mutation.resolver';
 import { UserQuery } from './controller/user-query.resolver';
+import { UserSubscription } from './controller/user-subscription.resolver';
 import { UserResolver } from './controller/user.resolver';
 import { UserRepository } from './repository/impl/user.repository';
 import { UserUseCase } from './use-case/impl/user.use-case';
@@ -15,6 +16,7 @@ import { RoomModule } from '@/module/room/room.module';
     UserResolver,
     UserQuery,
     UserMutation,
+    UserSubscription,
   ],
   exports: [{ provide: InjectionToken.USER_REPOSITORY, useClass: UserRepository }],
 })

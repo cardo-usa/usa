@@ -1,7 +1,7 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, ID, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class RoomWhereUniqueInput {
-  @Field(() => String, { nullable: false })
+  @Field(() => ID, { nullable: false })
   id!: string;
 }

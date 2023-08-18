@@ -16,6 +16,14 @@ export class UserRepository implements UserRepositoryInterface {
     return foundUser && new User(foundUser);
   }
 
+  async findManyByRoomId(roomId: Room['id']): Promise<User[]> {
+    const foundUsers = await this.prismaService.user.findMany({
+      where: { joiningRoomId: roomId },
+    });
+
+    return foundUsers.map((user) => new User(user));
+  }
+
   async findManyByRoomIds(roomIds: Room['id'][]): Promise<User[]> {
     const foundUsers = await this.prismaService.user.findMany({
       where: { joiningRoomId: { in: roomIds } },
