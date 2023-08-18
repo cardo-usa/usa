@@ -1,5 +1,6 @@
 import { Inject, Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { RoomGameStateEnum } from './dto/enum/room-game-state.enum';
 import { RoomUpdateGameStateInput } from './dto/input/room-update-game-state.input';
 import { RoomWhereUniqueInput } from './dto/input/room-where-unique.input';
 import { RoomObject } from './dto/object/room.object';
@@ -41,7 +42,25 @@ export class RoomMutation {
   ): Promise<Room> {
     this.logger.log(`${this.updateRoomGameState.name} called`);
 
+    if (data.gameState === RoomGameStateEnum.IN_GAME) {
+      throw new Error('Do not use this mutation to start the game. Please use initializeGame mutation.');
+    }
+
     const updatedRoom = await this.roomUseCase.updateRoomGameState(where.id, data.gameState);
+
+    await this.roomPublishUseCase.publishUpdatedRoom(updatedRoom.id, (room) => ({ updatedRoom: room }));
+
+    return updatedRoom;
+  }
+
+  @Mutation(() => RoomObject)
+  async initializeGame(@Args('where', { type: () => RoomWhereUniqueInput }) where: RoomWhereUniqueInput): Promise<Room> {
+    this.logger.log(`${this.initializeGame.name} called`);
+
+    const updatedRoom = await this.roomUseCase.initializeGame(where.id);
+    if (updatedRoom === null) {
+      throw new Error(`Cannot find Room with id ${where.id}.`);
+    }
 
     await this.roomPublishUseCase.publishUpdatedRoom(updatedRoom.id, (room) => ({ updatedRoom: room }));
 
