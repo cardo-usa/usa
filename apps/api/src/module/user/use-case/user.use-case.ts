@@ -5,4 +5,5 @@ export interface UserUseCaseInterface {
   findUser(userId: User['id']): Promise<User | null>;
   updateUserAccountSetting(userId: User['id'], userAccountSetting: Partial<UserAccountSetting>): Promise<User | null>;
   joinRoom(userAccountSetting: UserAccountSetting, roomId: Room['id']): Promise<User | null>;
+  drawCardsFromDeckCards(userId: User['id'], n: number): Promise<User | null>;
 }
