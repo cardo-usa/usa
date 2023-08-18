@@ -21,6 +21,20 @@ export class UserUseCase implements UserUseCaseInterface {
     return foundUser;
   }
 
+  async updateAccountSetting(userId: User['id'], userAccountSetting: Partial<UserAccountSetting>): Promise<User | null> {
+    const foundUser = await this.userRepository.find(userId);
+    if (foundUser === null) {
+      return null;
+    }
+
+    const updatedUser = this.userRepository.update(userId, {
+      ...foundUser,
+      ...userAccountSetting,
+    });
+
+    return updatedUser;
+  }
+
   async joinRoom(userAccountSetting: UserAccountSetting, roomId: Room['id']): Promise<User | null> {
     const foundRoom = await this.roomRepository.find(roomId);
     if (foundRoom === null) {

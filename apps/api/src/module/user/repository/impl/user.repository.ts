@@ -43,13 +43,13 @@ export class UserRepository implements UserRepositoryInterface {
     return new User(createdUser);
   }
 
-  async update(
-    userId: User['id'],
-    user: Partial<Omit<User, 'id' | 'handCards'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
-  ): Promise<User> {
+  async update(userId: User['id'], user: Partial<Omit<User, 'id'>>): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
       where: { id: userId },
-      data: user,
+      data: {
+        ...user,
+        handCards: user.handCards ?? undefined,
+      },
     });
 
     return new User(updatedUser);
