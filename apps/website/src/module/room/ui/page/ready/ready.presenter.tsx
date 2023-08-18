@@ -6,9 +6,11 @@ import { type AccountSetting } from '@/model/account-setting';
 type Props = {
   isGameMaster: boolean;
   members: AccountSetting[];
+  reopenEvent: VoidFunction;
+  startEvent: VoidFunction;
 };
 
-const Ready: FC<Props> = ({ isGameMaster, members }) => {
+const Ready: FC<Props> = ({ isGameMaster, members, reopenEvent, startEvent }) => {
   return (
     <div className="flex h-screen flex-col items-center justify-center space-y-10">
       <p className="h-[5.5rem] text-6xl font-bold text-tomato-11">募集完了 !</p>
@@ -23,10 +25,20 @@ const Ready: FC<Props> = ({ isGameMaster, members }) => {
       <div className="flex space-x-16">
         {isGameMaster && (
           <>
-            <Button textColor="black" onClick={() => {}}>
+            <Button
+              textColor="black"
+              onClick={() => {
+                reopenEvent();
+              }}
+            >
               募集を再開する
             </Button>
-            <Button textColor="tomato" onClick={() => {}}>
+            <Button
+              textColor="tomato"
+              onClick={() => {
+                startEvent();
+              }}
+            >
               ゲームを始める
             </Button>
           </>

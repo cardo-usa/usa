@@ -18,7 +18,7 @@ const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 type Props = {
   closeButtonEvent?: ComponentPropsWithoutRef<'button'>['onClick'];
   cancelButtonEvent?: ComponentPropsWithoutRef<'button'>['onClick'];
-  submitButtonEvent?: VoidFunction;
+  submitButtonEvent?: (iconEmoji: string, name: string, iconBackgroundColor: AccountSetting['iconBackgroundColor']) => void;
 };
 
 type FormValue = {
@@ -97,7 +97,7 @@ const AccountSettingModal: FC<Props> = ({ closeButtonEvent, cancelButtonEvent, s
           iconBackgroundColor: data.backgroundColor,
         });
         if (submitButtonEvent) {
-          submitButtonEvent();
+          submitButtonEvent(data.emoji, data.name, data.backgroundColor);
         }
       })}
     >
