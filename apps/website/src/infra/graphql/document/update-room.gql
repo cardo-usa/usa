@@ -1,0 +1,6 @@
+mutation UpdateRoomGameState($data: RoomUpdateGameStateInput!, $where: RoomWhereUniqueInput!) {
+  updateRoomGameState(data: $data, where: $where) {
+    id
+    gameState
+  }
+}
