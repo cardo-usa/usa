@@ -35,4 +35,31 @@ export class UserUseCase implements UserUseCaseInterface {
 
     return createdUser;
   }
+
+  async drawCardsFromDeckCards(userId: User['id'], n: number): Promise<User | null> {
+    const foundUser = await this.userRepository.find(userId);
+    if (foundUser === null) {
+      return null;
+    }
+
+    const foundRoom = await this.roomRepository.find(foundUser.joiningRoomId);
+    if (foundRoom === null || foundUser.handCards === null) {
+      throw new Error(`Cannnot find Room with userId ${foundUser.id}.`);
+    }
+
+    const drawCard = foundRoom.deckCards.slice(0, n);
+    if (drawCard === undefined) {
+      throw new Error('No card in deck card');
+    }
+
+    const updatedUser = await this.userRepository.update(userId, {
+      handCards: [...foundUser.handCards, ...drawCard],
+    });
+
+    await this.roomRepository.update(foundRoom.id, {
+      deckCards: foundRoom.deckCards.slice(n),
+    });
+
+    return updatedUser;
+  }
 }
