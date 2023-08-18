@@ -1,0 +1,3 @@
+query VerifyCanJoinRoom($where: RoomWhereUniqueInput!) {
+  verifyCanJoinRoom(where: $where)
+}

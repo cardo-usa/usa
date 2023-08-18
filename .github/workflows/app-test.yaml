@@ -5,6 +5,8 @@ on: push
 env:
   DATABASE_URL: mongodb://localhost:27017/test
   MONGODB_VERSION: 6
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}
+  NEXT_PUBLIC_WS_ENDPOINT: ${{ secrets.NEXT_PUBLIC_WS_ENDPOINT }}
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
