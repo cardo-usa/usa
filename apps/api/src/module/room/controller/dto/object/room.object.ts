@@ -5,7 +5,7 @@ import type { Room } from '@/module/room/domain/room.model';
 import { UserObject } from '@/module/user/controller/dto/object/user.object';
 
 @ObjectType('Room')
-export class RoomObject implements Omit<Room, 'isWanted'> {
+export class RoomObject implements Omit<Room, 'isWanted' | 'isDeckCardEmpty'> {
   @Field(() => ID, { nullable: false })
   id!: string;
 
