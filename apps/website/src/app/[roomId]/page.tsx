@@ -20,7 +20,7 @@ const RoomIdPage = async ({ params }: RoomIdPageProps): Promise<JSX.Element> => 
     throw new Error("You can't join this room cause it does not exist or it is not wanted.");
   }
 
-  return <Integrate />;
+  return <Integrate roomId={params.roomId} />;
 };
 
 export default RoomIdPage;
