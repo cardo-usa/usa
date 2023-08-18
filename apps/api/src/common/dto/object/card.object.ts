@@ -1,10 +1,13 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { CardColorEnum } from '@/common/dto/enum/card-color.enum';
 import { CardTypeEnum } from '@/common/dto/enum/card-type.enum';
 import type { Card } from '@/common/model/card.model';
 
 @ObjectType('Card')
 export class CardObject implements Card {
+  @Field(() => ID)
+  id!: string;
+
   @Field(() => CardTypeEnum)
   type!: CardTypeEnum;
 
