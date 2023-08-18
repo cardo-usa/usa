@@ -7,4 +7,5 @@ export interface RoomUseCaseInterface {
   updateRoomGameState(roomId: Room['id'], gameState: Room['gameState']): Promise<Room>;
   verifyCanJoinRoom(roomId: Room['id']): Promise<boolean>;
   initializeGame(roomId: Room['id']): Promise<Room | null>;
+  getResult(roomId: Room['id']): Promise<User[]>;
 }

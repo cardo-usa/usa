@@ -5,6 +5,7 @@ import { RoomObject } from './dto/object/room.object';
 import { InjectionToken } from '@/common/constant/injection-token';
 import type { Room } from '@/module/room/domain/room.model';
 import { RoomUseCaseInterface } from '@/module/room/use-case/room.use-case';
+import { UserObject } from '@/module/user/controller/dto/object/user.object';
 
 @Resolver()
 export class RoomQuery {
@@ -37,5 +38,17 @@ export class RoomQuery {
     const canJoinRoom = await this.roomUseCase.verifyCanJoinRoom(where.id);
 
     return canJoinRoom;
+  }
+
+  @Query(() => UserObject, { nullable: false })
+  async getResult(
+    @Args('where', { type: () => RoomWhereUniqueInput })
+    where: RoomWhereUniqueInput,
+  ) {
+    this.logger.log(`${this.getResult.name} called`);
+
+    const result = await this.roomUseCase.getResult(where.id);
+
+    return result;
   }
 }
