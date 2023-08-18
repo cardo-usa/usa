@@ -96,6 +96,16 @@ export class RoomUseCase implements RoomUseCaseInterface {
       fieldCards: [fieldCard],
     });
 
+    const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(roomId);
+
+    await Promise.all(
+      orderedUsers.map(async (user, index) => {
+        await this.userRepository.update(user.id, {
+          isMyTurn: index === 0,
+        });
+      }),
+    );
+
     return updatedRoom;
   }
 }

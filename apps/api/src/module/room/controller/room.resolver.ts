@@ -16,7 +16,7 @@ export class RoomResolver {
 
   @ResolveField(() => [UserObject])
   async attenders(@Parent() room: Room): Promise<User[]> {
-    const attenders = await this.userRepository.findManyByRoomId(room.id);
+    const attenders = await this.userRepository.findManyByRoomIdEnsureOrder(room.id);
 
     return attenders;
   }

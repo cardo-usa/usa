@@ -24,6 +24,15 @@ export class UserRepository implements UserRepositoryInterface {
     return foundUsers.map((user) => new User(user));
   }
 
+  async findManyByRoomIdEnsureOrder(roomId: Room['id']): Promise<User[]> {
+    const foundUsers = await this.prismaService.user.findMany({
+      where: { joiningRoomId: roomId },
+      orderBy: { joinedAt: 'asc' },
+    });
+
+    return foundUsers.map((user) => new User(user));
+  }
+
   async findManyByRoomIds(roomIds: Room['id'][]): Promise<User[]> {
     const foundUsers = await this.prismaService.user.findMany({
       where: { joiningRoomId: { in: roomIds } },
@@ -45,7 +54,7 @@ export class UserRepository implements UserRepositoryInterface {
 
   async update(
     userId: User['id'],
-    user: Partial<Omit<User, 'id' | 'handCards'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
+    user: Partial<Omit<User, 'id' | 'handCards' | 'shouldFinish'> & Record<keyof Pick<User, 'handCards'>, NonNullable<User['handCards']>>>,
   ): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
       where: { id: userId },
