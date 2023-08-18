@@ -4,7 +4,7 @@ import { RoomGameStateEnum } from '@/module/room/controller/dto/enum/room-game-s
 import type { Room } from '@/module/room/domain/room.model';
 
 @InputType()
-export class RoomUpdateInput implements Partial<Room> {
+export class RoomUpdateInput implements Partial<Omit<Room, 'isWanted' | 'isDeckCardEmpty'>> {
   @Field(() => ID, { nullable: true })
   id?: string;
 

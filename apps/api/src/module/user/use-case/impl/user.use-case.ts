@@ -37,6 +37,22 @@ export class UserUseCase implements UserUseCaseInterface {
     return createdUser;
   }
 
+  async exitRoom(userId: User['id']): Promise<User | null> {
+    const foundUser = await this.userRepository.find(userId);
+    if (foundUser === null) {
+      return null;
+    }
+
+    const deletedUser = await this.userRepository.delete(userId);
+
+    const foundUsers = await this.userRepository.findManyByRoomId(foundUser.joiningRoomId);
+    if (foundUsers.length === 0) {
+      await this.roomRepository.delete(foundUser.joiningRoomId);
+    }
+
+    return deletedUser;
+  }
+
   async drawCardsFromDeckCards(userId: User['id'], n: number, shouldTransitionTurn: boolean): Promise<User | null> {
     const foundUser = await this.userRepository.find(userId);
     if (foundUser === null) {
@@ -62,7 +78,7 @@ export class UserUseCase implements UserUseCaseInterface {
     });
 
     if (shouldTransitionTurn) {
-      const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(foundRoom.id);
+      const orderedUsers = await this.userRepository.findManyByRoomIdOrderedByJoinedAt(foundRoom.id);
 
       const currentUserIndex = orderedUsers.findIndex((user) => user.id === updatedUser.id);
       if (currentUserIndex === -1) {
@@ -75,6 +91,35 @@ export class UserUseCase implements UserUseCaseInterface {
       }
 
       [updatedUser] = await this.transitionTurn(updatedUser.id, nextUser.id);
+    }
+
+    const updatedRoom = await this.roomRepository.find(foundRoom.id);
+    if (updatedRoom === null) {
+      throw new Error(`Cannnot find updatedRoom with roomId ${foundRoom.id}.`);
+    }
+
+    if (updatedRoom.isDeckCardEmpty) {
+      const foundUsers = await this.userRepository.findManyByRoomId(foundRoom.id);
+      const notFinishedUsers = foundUsers.filter((user) => user.gameState !== 'FINISHED');
+
+      const sortedUsers = notFinishedUsers.sort((a, b) => {
+        if (a.handCards === null || b.handCards === null) {
+          throw new Error('Cannnot find handCards.');
+        }
+
+        return a.handCards.length - b.handCards.length;
+      });
+
+      sortedUsers.forEach(async (user) => {
+        await this.userRepository.update(user.id, {
+          gameState: 'FINISHED',
+          finishedAt: new Date(),
+        });
+      });
+
+      await this.roomRepository.update(foundRoom.id, {
+        gameState: 'FINISHED',
+      });
     }
 
     return updatedUser;
@@ -108,7 +153,7 @@ export class UserUseCase implements UserUseCaseInterface {
       fieldCards: [...foundRoom.fieldCards, putCard],
     });
 
-    const orderedUsers = await this.userRepository.findManyByRoomIdEnsureOrder(foundRoom.id);
+    const orderedUsers = await this.userRepository.findManyByRoomIdOrderedByJoinedAt(foundRoom.id);
 
     const updatedUserOrNull = await match(putCard.type)
       .with('NUMBER', () => this.numberCardEffect(userId, orderedUsers))
@@ -146,6 +191,23 @@ export class UserUseCase implements UserUseCaseInterface {
       updatedUser = await this.userRepository.update(userId, {
         gameState: 'FINISHED',
         finishedAt: new Date(),
+      });
+    }
+
+    const updatedUsers = await this.userRepository.findManyByRoomId(foundRoom.id);
+    if (updatedUsers.filter((user) => user.gameState === 'FINISHED').length === updatedUsers.length - 1) {
+      const notFinishedUser = updatedUsers.find((user) => user.gameState !== 'FINISHED');
+      if (notFinishedUser === undefined) {
+        throw new Error('Cannnot find notFinishedUser.');
+      }
+
+      await this.userRepository.update(notFinishedUser.id, {
+        gameState: 'FINISHED',
+        finishedAt: new Date(),
+      });
+
+      await this.roomRepository.update(foundRoom.id, {
+        gameState: 'FINISHED',
       });
     }
 
