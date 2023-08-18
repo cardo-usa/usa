@@ -55,6 +55,10 @@ export class User {
     this.gameState = args.gameState;
     this.finishedAt = args.finishedAt;
   }
+
+  get shouldFinish(): boolean {
+    return this.handCards !== null && this.handCards.length === 0;
+  }
 }
 
 export type UserAccountSetting = Pick<User, 'name' | 'iconEmoji' | 'iconBackgroundColor'>;

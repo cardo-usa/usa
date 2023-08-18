@@ -7,7 +7,7 @@ import { UserGameStateEnum } from '@/module/user/controller/dto/enum/user-game-s
 import type { User } from '@/module/user/domain/user.model';
 
 @ObjectType('User')
-export class UserObject implements Omit<User, 'joiningRoomId'> {
+export class UserObject implements Omit<User, 'joiningRoomId' | 'shouldFinish'> {
   @Field(() => ID, { nullable: false })
   id!: string;
 
