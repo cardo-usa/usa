@@ -1,7 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectionToken } from '@/common/constant/injection-token';
-import { generateUpdatedRoomAttendersTrigger } from '@/common/constant/pubsub';
-import { PubSubService } from '@/common/service/pubsub/pubsub.service';
 import type { Room } from '@/module/room/domain/room.model';
 import { RoomRepositoryInterface } from '@/module/room/repository/room.repository';
 import type { User, UserAccountSetting } from '@/module/user/domain/user.model';
@@ -15,7 +13,6 @@ export class UserUseCase implements UserUseCaseInterface {
     private readonly roomRepository: RoomRepositoryInterface,
     @Inject(InjectionToken.USER_REPOSITORY)
     private readonly userRepository: UserRepositoryInterface,
-    private readonly pubSubService: PubSubService,
   ) {}
 
   async find(userId: User['id']): Promise<User | null> {
@@ -37,16 +34,5 @@ export class UserUseCase implements UserUseCaseInterface {
     });
 
     return createdUser;
-  }
-
-  async publishUpdatedRoomAttenders(
-    roomId: Room['id'],
-    publish: (roomAttenders: User[]) => Parameters<PubSubService['publish']>['1'],
-  ): Promise<User[]> {
-    const foundRoomAttenders = await this.userRepository.findManyByRoomId(roomId);
-
-    await this.pubSubService.publish(generateUpdatedRoomAttendersTrigger(roomId), publish(foundRoomAttenders));
-
-    return foundRoomAttenders;
   }
 }
