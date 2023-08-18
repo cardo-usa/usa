@@ -1,0 +1,8 @@
+mutation CreateRoom($accountSetting: UserAccountSettingInput!) {
+  createRoom(accountSetting: $accountSetting) {
+    id
+    joiningRoom {
+      id
+    }
+  }
+}
