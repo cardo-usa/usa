@@ -9,3 +9,5 @@ export const initialAccountSetting = {
 } as const satisfies AccountSetting;
 
 export const accountSettingAtom = atomWithStorage<AccountSetting>(atomKeys['account-setting'], initialAccountSetting);
+
+export const accountIdSettingAtom = atomWithStorage<string>(atomKeys['account-id-setting'], '');
