@@ -5,6 +5,7 @@ import { RoomWhereUniqueInput } from './dto/input/room-where-unique.input';
 import { RoomObject } from './dto/object/room.object';
 import { InjectionToken } from '@/common/constant/injection-token';
 import type { Room } from '@/module/room/domain/room.model';
+import { RoomPublishUseCaseInterface } from '@/module/room/use-case/room-publish.use-case';
 import { RoomUseCaseInterface } from '@/module/room/use-case/room.use-case';
 import { UserAccountSettingInput } from '@/module/user/controller/dto/input/user-account-setting.input';
 import { UserObject } from '@/module/user/controller/dto/object/user.object';
@@ -17,6 +18,8 @@ export class RoomMutation {
   constructor(
     @Inject(InjectionToken.ROOM_USE_CASE)
     private readonly roomUseCase: RoomUseCaseInterface,
+    @Inject(InjectionToken.ROOM_PUBLISH_USE_CASE)
+    private readonly roomPublishUseCase: RoomPublishUseCaseInterface,
   ) {}
 
   @Mutation(() => UserObject)
@@ -39,6 +42,8 @@ export class RoomMutation {
     this.logger.log(`${this.updateRoomGameState.name} called`);
 
     const updatedRoom = await this.roomUseCase.updateRoomGameState(where.id, data.gameState);
+
+    await this.roomPublishUseCase.publishUpdatedRoom(updatedRoom.id, (room) => ({ updatedRoom: room }));
 
     return updatedRoom;
   }
