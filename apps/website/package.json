@@ -23,6 +23,12 @@
   "dependencies": {
     "@dnd-kit/core": "6.0.8",
     "@dnd-kit/utilities": "3.2.1",
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-operations": "4.0.1",
+    "@graphql-codegen/typescript-urql": "3.7.3",
+    "@graphql-codegen/urql-introspection": "2.2.1",
     "@hookform/resolvers": "3.2.0",
     "@radix-ui/react-dialog": "1.0.4",
     "@urql/core": "4.1.1",
@@ -49,12 +55,6 @@
     "zod": "3.22.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "5.0.0",
-    "@graphql-codegen/introspection": "4.0.0",
-    "@graphql-codegen/typescript": "4.0.1",
-    "@graphql-codegen/typescript-operations": "4.0.1",
-    "@graphql-codegen/typescript-urql": "3.7.3",
-    "@graphql-codegen/urql-introspection": "2.2.1",
     "@storybook/react": "7.3.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
