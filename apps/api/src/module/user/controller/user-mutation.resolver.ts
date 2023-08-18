@@ -1,6 +1,7 @@
 import { Inject, Logger } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { UserAccountSettingInput } from './dto/input/user-account-setting.input';
+import { UserWhereUniqueInput } from './dto/input/user-where-unique.input';
 import { UserObject } from './dto/object/user.object';
 import { InjectionToken } from '@/common/constant/injection-token';
 import { RoomWhereUniqueInput } from '@/module/room/controller/dto/input/room-where-unique.input';
@@ -39,12 +40,34 @@ export class UserMutation {
   }
 
   @Mutation(() => UserObject)
-  async drawCardsFromDeckCards(@Args('userId', { type: () => String }) userId: string, @Args('n', { type: () => Number }) n: number): Promise<User> {
-    this.logger.log(`${this.drawCardsFromDeckCards.name} called`);
+  async drawCardFromDeckCards(
+    @Args('where', { type: () => UserWhereUniqueInput })
+    where: UserWhereUniqueInput,
+  ): Promise<User> {
+    this.logger.log(`${this.drawCardFromDeckCards.name} called`);
 
-    const updatedUser = await this.userUseCase.drawCardsFromDeckCards(userId, n);
+    const updatedUser = await this.userUseCase.drawCardsFromDeckCards(where.id, 1, true);
     if (updatedUser === null) {
-      throw new Error(`Cannnot find User with id ${userId}.`);
+      throw new Error(`Cannnot find User with id ${where.id}.`);
+    }
+
+    await this.roomPublishUseCase.publishUpdatedRoom(updatedUser.joiningRoomId, (room) => ({ updatedRoom: room }));
+
+    return updatedUser;
+  }
+
+  @Mutation(() => UserObject)
+  async putHandCardToFieldCards(
+    @Args('where', { type: () => UserWhereUniqueInput })
+    where: UserWhereUniqueInput,
+    @Args('handCardId', { type: () => String }) handCardId: string,
+    @Args('subCard', { type: () => Number, nullable: true }) subCard: number,
+  ): Promise<User> {
+    this.logger.log(`${this.putHandCardToFieldCards.name} called`);
+
+    const updatedUser = await this.userUseCase.putHandCardToFieldCards(where.id, handCardId, subCard);
+    if (updatedUser === null) {
+      throw new Error(`Cannnot find User with id ${where.id}.`);
     }
 
     await this.roomPublishUseCase.publishUpdatedRoom(updatedUser.joiningRoomId, (room) => ({ updatedRoom: room }));

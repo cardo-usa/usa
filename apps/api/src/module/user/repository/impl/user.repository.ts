@@ -24,6 +24,15 @@ export class UserRepository implements UserRepositoryInterface {
     return foundUsers.map((user) => new User(user));
   }
 
+  async findManyByRoomIdEnsureOrder(roomId: Room['id']): Promise<User[]> {
+    const foundUsers = await this.prismaService.user.findMany({
+      where: { joiningRoomId: roomId },
+      orderBy: { joinedAt: 'asc' },
+    });
+
+    return foundUsers.map((user) => new User(user));
+  }
+
   async findManyByRoomIds(roomIds: Room['id'][]): Promise<User[]> {
     const foundUsers = await this.prismaService.user.findMany({
       where: { joiningRoomId: { in: roomIds } },
