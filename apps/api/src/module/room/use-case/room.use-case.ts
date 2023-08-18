@@ -6,4 +6,5 @@ export interface RoomUseCaseInterface {
   createRoom(userAccountSetting: UserAccountSetting): Promise<[Room, User]>;
   updateRoomGameState(roomId: Room['id'], gameState: Room['gameState']): Promise<Room>;
   verifyCanJoinRoom(roomId: Room['id']): Promise<boolean>;
+  initializeGame(roomId: Room['id']): Promise<Room | null>;
 }
