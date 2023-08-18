@@ -1,5 +1,5 @@
 import { type VariantProps, cn, tv } from '@usa/tailwind';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode, type ElementRef } from 'react';
 import type { AccountSetting } from '@/model/account-setting';
 
 const userIconVariant = tv({
@@ -37,10 +37,14 @@ export type UserIconProps = Omit<ComponentPropsWithoutRef<'div'>, 'children' | '
   size: VariantProps<typeof userIconVariant>['size'];
 };
 
-export const UserIcon = ({ emoji, backgroundColor, size = '3xl', ...props }: UserIconProps): ReactNode => (
-  <div className={cn('aspect-square h-fit w-fit overflow-hidden rounded-full', userIconVariant({ backgroundColor }))} {...props}>
-    <span className={cn('pointer-events-none flex select-none items-center justify-center p-2 leading-none', userIconVariant({ size }))}>
-      {emoji}
-    </span>
-  </div>
+export const UserIcon = forwardRef<ElementRef<'div'>, UserIconProps>(
+  ({ emoji, backgroundColor, size = '3xl', ...props }, ref): ReactNode => (
+    <div ref={ref} className={cn('aspect-square h-fit w-fit overflow-hidden rounded-full', userIconVariant({ backgroundColor }))} {...props}>
+      <span className={cn('pointer-events-none flex select-none items-center justify-center p-2 leading-none', userIconVariant({ size }))}>
+        {emoji}
+      </span>
+    </div>
+  ),
 );
+
+UserIcon.displayName = 'UserIcon';

@@ -16,8 +16,9 @@ import { accountSettingAtom } from '@/state/account-setting/account-setting.atom
 const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 
 type Props = {
-  closeButtonEvent: ComponentPropsWithoutRef<'button'>['onClick'];
-  cancelButtonEvent: ComponentPropsWithoutRef<'button'>['onClick'];
+  closeButtonEvent?: ComponentPropsWithoutRef<'button'>['onClick'];
+  cancelButtonEvent?: ComponentPropsWithoutRef<'button'>['onClick'];
+  submitButtonEvent?: VoidFunction;
 };
 
 type FormValue = {
@@ -66,7 +67,7 @@ const colorList = [
   'amber',
 ] as const satisfies readonly AccountSetting['iconBackgroundColor'][];
 
-const AccountSettingModal: FC<Props> = ({ closeButtonEvent, cancelButtonEvent }) => {
+const AccountSettingModal: FC<Props> = ({ closeButtonEvent, cancelButtonEvent, submitButtonEvent }) => {
   const [AcountSetting, setAccountSetting] = useAtom(accountSettingAtom);
 
   const {
@@ -95,6 +96,9 @@ const AccountSettingModal: FC<Props> = ({ closeButtonEvent, cancelButtonEvent })
           name: data.name,
           iconBackgroundColor: data.backgroundColor,
         });
+        if (submitButtonEvent) {
+          submitButtonEvent();
+        }
       })}
     >
       <div className="flex h-10 w-full items-center justify-end">
