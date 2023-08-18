@@ -21,4 +21,8 @@ export class Room {
   get isWanted(): boolean {
     return this.gameState === 'WANTED';
   }
+
+  get isDeckCardEmpty(): boolean {
+    return this.deckCards.length === 0;
+  }
 }
