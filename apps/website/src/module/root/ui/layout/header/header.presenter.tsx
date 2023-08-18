@@ -1,6 +1,6 @@
 'use client';
 import BrandLogo from '@usa/core/asset/brand/logo.svg';
-import { BaseDialog } from '@usa/core/component/Dialog';
+import { BaseDialog } from '@usa/core/component/dialog';
 import { Image } from '@usa/core/component/image';
 import { Link } from '@usa/core/component/link';
 import { BookIcon } from '@usa/core/icon/book-icon';
