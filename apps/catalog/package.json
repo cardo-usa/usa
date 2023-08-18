@@ -27,14 +27,14 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "7.3.1",
-    "@storybook/addon-essentials": "7.3.1",
+    "@storybook/addon-a11y": "7.3.2",
+    "@storybook/addon-essentials": "7.3.2",
     "@storybook/addon-styling": "1.3.6",
-    "@storybook/addon-viewport": "7.3.1",
-    "@storybook/addons": "7.3.1",
-    "@storybook/nextjs": "7.3.1",
-    "@storybook/react": "7.3.1",
-    "@storybook/theming": "7.3.1",
+    "@storybook/addon-viewport": "7.3.2",
+    "@storybook/addons": "7.3.2",
+    "@storybook/nextjs": "7.3.2",
+    "@storybook/react": "7.3.2",
+    "@storybook/theming": "7.3.2",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "@usa/jest": "workspace:*",
@@ -44,6 +44,6 @@
     "@usa/tsconfig": "workspace:*",
     "chromatic": "6.22.0",
     "eslint-config-usa-nextjs": "workspace:*",
-    "storybook": "7.3.1"
+    "storybook": "7.3.2"
   }
 }
