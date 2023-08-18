@@ -5,6 +5,7 @@ import BackgroundCards from '@usa/core/asset/top/bg-cards.svg';
 import { Button } from '@usa/core/component/button';
 import { BaseDialog } from '@usa/core/component/dialog';
 import { Image } from '@usa/core/component/image';
+import type { Route } from 'next';
 import { useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import { AccountSettingModal } from '@/component/modal/account-setting';
@@ -67,7 +68,7 @@ const RootPage = (): ReactNode => {
                 setOpen(false);
               }}
               inRoomButtonEvent={() => {
-                router.push(`/${roomId}`);
+                router.push(`/${roomId}` as Route);
                 setRoomId('');
                 setOpen(false);
                 setState('accountSetting');
