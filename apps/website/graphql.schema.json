@@ -311,7 +311,7 @@
             "deprecationReason": null
           },
           {
-            "name": "drawCardFromDeckCards",
+            "name": "drawCardsFromDeckCards",
             "description": null,
             "args": [
               {
