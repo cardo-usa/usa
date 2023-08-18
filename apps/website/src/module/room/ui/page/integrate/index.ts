@@ -1,1 +1,1 @@
-export { Integrate } from './integrate.presenter';
+export { Integrate } from './integrate.container';

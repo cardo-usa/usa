@@ -1,10 +1,16 @@
 'use client';
 
-import { UrqlProvider } from '@urql/next';
-import { ssr, urqlClient } from '@/infra/urql';
+import { useQuery } from '@urql/next';
+import { FindRoomDocument, type FindRoomQuery, type FindRoomQueryVariables } from '#/src/infra/graphql/generated/graphql';
 
-export const Integrate = () => (
-  <UrqlProvider client={urqlClient} ssr={ssr}>
-    {/* TODO: ここで状態によって出しわけする */}
-  </UrqlProvider>
-);
+export const Integrate = () => {
+  // Sample query
+  const [{ data }] = useQuery<FindRoomQuery, FindRoomQueryVariables>({
+    query: FindRoomDocument,
+    variables: {
+      where: { id: '64df3eb13fd4bc765b377329' },
+    },
+  });
+
+  return <div>{JSON.stringify(data)}</div>;
+};
