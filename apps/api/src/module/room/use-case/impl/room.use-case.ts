@@ -19,16 +19,14 @@ export class RoomUseCase implements RoomUseCaseInterface {
     private readonly dataLoaderCacheService: DataLoaderCacheService<Room, string>,
   ) {}
 
-  async verifyCanJoinRoom(roomId: Room['id']): Promise<boolean> {
+  async findRoom(roomId: Room['id']): Promise<Room | null> {
     const foundRoom = await this.roomRepository.find(roomId);
 
     if (foundRoom !== null) {
       this.dataLoaderCacheService.prime(this.roomDataLoader, foundRoom);
     }
 
-    const canJoinRoom = foundRoom?.isWanted ?? false;
-
-    return canJoinRoom;
+    return foundRoom;
   }
 
   async createRoom(userAccountSetting: UserAccountSetting): Promise<[Room, User]> {
@@ -51,5 +49,17 @@ export class RoomUseCase implements RoomUseCaseInterface {
     this.dataLoaderCacheService.prime(this.roomDataLoader, updatedRoom);
 
     return updatedRoom;
+  }
+
+  async verifyCanJoinRoom(roomId: Room['id']): Promise<boolean> {
+    const foundRoom = await this.roomRepository.find(roomId);
+
+    if (foundRoom !== null) {
+      this.dataLoaderCacheService.prime(this.roomDataLoader, foundRoom);
+    }
+
+    const canJoinRoom = foundRoom?.isWanted ?? false;
+
+    return canJoinRoom;
   }
 }
