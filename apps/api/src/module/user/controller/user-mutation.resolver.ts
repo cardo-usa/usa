@@ -29,7 +29,7 @@ export class UserMutation {
   ): Promise<User> {
     this.logger.log(`${this.updateUserAccountSetting.name} called`);
 
-    const updatedUser = await this.userUseCase.updateAccountSetting(where.id, accountSetting);
+    const updatedUser = await this.userUseCase.updateUserAccountSetting(where.id, accountSetting);
     if (updatedUser === null) {
       throw new Error(`Cannnot find User with id ${where.id}.`);
     }
