@@ -67,7 +67,7 @@ const RootPage = (): ReactNode => {
                 setOpen(false);
               }}
               inRoomButtonEvent={() => {
-                router.push(`./${roomId}`);
+                router.push(`/${roomId}`);
                 setRoomId('');
                 setOpen(false);
                 setState('accountSetting');
