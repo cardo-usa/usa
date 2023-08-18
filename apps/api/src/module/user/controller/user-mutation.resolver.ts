@@ -37,4 +37,18 @@ export class UserMutation {
 
     return createdUser;
   }
+
+  @Mutation(() => UserObject)
+  async drawCardFromDeckCards(@Args('userId', { type: () => String }) userId: string, @Args('n', { type: () => Number }) n: number): Promise<User> {
+    this.logger.log(`${this.drawCardFromDeckCards.name} called`);
+
+    const updatedUser = await this.userUseCase.drawCardFromDeckCards(userId, n);
+    if (updatedUser === null) {
+      throw new Error(`Cannnot find User with id ${userId}.`);
+    }
+
+    await this.roomPublishUseCase.publishUpdatedRoom(updatedUser.joiningRoomId, (room) => ({ updatedRoom: room }));
+
+    return updatedUser;
+  }
 }

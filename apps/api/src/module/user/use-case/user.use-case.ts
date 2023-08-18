@@ -4,4 +4,5 @@ import type { User, UserAccountSetting } from '@/module/user/domain/user.model';
 export interface UserUseCaseInterface {
   find(userId: User['id']): Promise<User | null>;
   joinRoom(userAccountSetting: UserAccountSetting, roomId: Room['id']): Promise<User | null>;
+  drawCardFromDeckCards(userId: User['id'], n: number): Promise<User | null>;
 }
