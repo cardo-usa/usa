@@ -110,12 +110,14 @@ export class UserUseCase implements UserUseCaseInterface {
         return a.handCards.length - b.handCards.length;
       });
 
-      sortedUsers.forEach(async (user) => {
-        await this.userRepository.update(user.id, {
-          gameState: 'FINISHED',
-          finishedAt: new Date(),
-        });
-      });
+      await Promise.all(
+        sortedUsers.map(async (user) => {
+          await this.userRepository.update(user.id, {
+            gameState: 'FINISHED',
+            finishedAt: new Date(),
+          });
+        }),
+      );
 
       await this.roomRepository.update(foundRoom.id, {
         gameState: 'FINISHED',

@@ -18,7 +18,7 @@
     "eslint-config-usa-esm": "workspace:*",
     "jest": "29.6.2",
     "jest-environment-jsdom": "29.6.2",
-    "next": "13.4.18",
+    "next": "13.4.19",
     "ts-jest": "29.1.1"
   }
 }
