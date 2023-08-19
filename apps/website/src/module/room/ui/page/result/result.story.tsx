@@ -11,33 +11,7 @@ export default meta;
 
 export const Default: Story = {
   args: {
-    resultData: [
-      {
-        iconEmoji: '🐶',
-        iconBackgroundColor: 'tomato',
-        name: 'shio',
-      },
-      {
-        iconEmoji: '🐱',
-        iconBackgroundColor: 'violet',
-        name: 'koutyuke',
-      },
-      {
-        iconEmoji: '🐭',
-        iconBackgroundColor: 'indigo',
-        name: 'reo',
-      },
-      {
-        iconEmoji: '🐹',
-        iconBackgroundColor: 'cyan',
-        name: 'nuko',
-      },
-      {
-        iconEmoji: '🐰',
-        iconBackgroundColor: 'green',
-        name: 'mimi',
-      },
-    ],
+    roomId: '64e029b98c6af6d0de2af21e',
     closeButtonEvent: () => {},
   },
 };
