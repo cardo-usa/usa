@@ -37,6 +37,7 @@ const config: StorybookConfig = {
         ...config.resolve,
         alias: {
           ...config.resolve?.alias,
+          '#': path.resolve(__dirname, '../../website'),
           '@': path.resolve(__dirname, '../../website/src'),
           '#core': path.resolve(__dirname, '../../../packages/core'),
         },
