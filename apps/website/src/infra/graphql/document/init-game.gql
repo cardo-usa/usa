@@ -1,0 +1,6 @@
+mutation InitializeGame($where: RoomWhereUniqueInput!) {
+  initializeGame(where: $where) {
+    gameState
+    id
+  }
+}

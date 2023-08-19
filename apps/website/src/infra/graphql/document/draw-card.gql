@@ -1,0 +1,5 @@
+mutation DrawCardFromDeckCards($where: UserWhereUniqueInput!) {
+  drawCardFromDeckCards(where: $where) {
+    id
+  }
+}

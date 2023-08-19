@@ -1,0 +1,19 @@
+query FindUser($where: UserWhereUniqueInput!) {
+  findUser(where: $where) {
+    gameState
+    handCards {
+      color
+      number
+      type
+      id
+    }
+    iconBackgroundColor
+    iconEmoji
+    id
+    isMyTurn
+    joinedAt
+    name
+    role
+    finishedAt
+  }
+}

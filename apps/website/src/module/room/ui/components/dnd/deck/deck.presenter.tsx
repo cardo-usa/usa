@@ -4,14 +4,16 @@ import type { FC } from 'react';
 
 type Props = {
   deckNum: number;
+  isMyTarn: boolean;
 };
 
-const Deck: FC<Props> = ({ deckNum }) => {
+const Deck: FC<Props> = ({ deckNum, isMyTarn }) => {
   const { attributes, listeners, setNodeRef, isDragging, setActivatorNodeRef } = useDraggable({
     id: 'deck',
     data: {
       isDeck: true,
     },
+    disabled: !isMyTarn,
   });
 
   return (
@@ -22,7 +24,7 @@ const Deck: FC<Props> = ({ deckNum }) => {
         </div>
       )}
       {deckNum > 0 && (
-        <div ref={setNodeRef} className="h-72 w-48">
+        <div ref={setNodeRef} className="h-72 w-48 transition hover:scale-110">
           {!isDragging && (
             <div ref={setActivatorNodeRef} {...listeners} {...attributes}>
               <CardBack className="h-72 w-48" />

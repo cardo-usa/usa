@@ -8,9 +8,11 @@ type Props = {
   isGameMaster: boolean;
   members: AccountSetting[];
   roomId: string;
+  closeEvent: VoidFunction;
+  leaveEvent: VoidFunction;
 };
 
-const Wanted: FC<Props> = ({ isGameMaster, members, roomId }) => {
+const Wanted: FC<Props> = ({ isGameMaster, members, roomId, closeEvent, leaveEvent }) => {
   const shareUrl = `https://cardo-usa.vercel.app/${roomId}`;
   return (
     <div className="flex h-screen flex-col items-center justify-center space-y-10">
@@ -33,12 +35,22 @@ const Wanted: FC<Props> = ({ isGameMaster, members, roomId }) => {
       </div>
       <div>
         {isGameMaster && (
-          <Button textColor="tomato" onClick={() => {}}>
+          <Button
+            textColor="tomato"
+            onClick={() => {
+              closeEvent();
+            }}
+          >
             締め切る
           </Button>
         )}
         {!isGameMaster && (
-          <Button textColor="black" onClick={() => {}}>
+          <Button
+            textColor="black"
+            onClick={() => {
+              leaveEvent();
+            }}
+          >
             退室する
           </Button>
         )}

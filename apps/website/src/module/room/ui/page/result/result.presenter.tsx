@@ -8,17 +8,12 @@ import type { FC, ComponentPropsWithoutRef } from 'react';
 import { UserIcon } from '@/component/user-icon';
 import type { AccountSetting } from '@/model/account-setting';
 
-type ResultDataTypes = {
-  rank: number;
-} & AccountSetting;
-
 type Props = {
-  resultData: ResultDataTypes[];
+  resultData: AccountSetting[];
   closeButtonEvent: ComponentPropsWithoutRef<'button'>['onClick'];
 };
 
 const Result: FC<Props> = ({ resultData, closeButtonEvent }) => {
-  resultData.sort((a, b) => (a.rank > b.rank ? 1 : -1));
   return (
     <div className="flex h-screen flex-col items-center justify-center space-y-10 text-tomato-11">
       <p className="h-[5.5rem] text-6xl font-bold">Result</p>
@@ -81,4 +76,4 @@ const Result: FC<Props> = ({ resultData, closeButtonEvent }) => {
   );
 };
 
-export { type ResultDataTypes, Result };
+export { Result };

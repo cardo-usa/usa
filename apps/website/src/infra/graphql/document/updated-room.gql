@@ -1,5 +1,5 @@
-query FindRoom($where: RoomWhereUniqueInput!) {
-  findRoom(where: $where) {
+subscription UpdatedRoom($where: RoomWhereUniqueInput!) {
+  updatedRoom(where: $where) {
     attenders {
       finishedAt
       gameState
