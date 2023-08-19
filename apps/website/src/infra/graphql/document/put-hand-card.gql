@@ -1,0 +1,5 @@
+mutation PutHandCardToFieldCards($handCardId: String!, $where: UserWhereUniqueInput!, $subCard: Float) {
+  putHandCardToFieldCards(handCardId: $handCardId, where: $where, subCard: $subCard) {
+    id
+  }
+}
