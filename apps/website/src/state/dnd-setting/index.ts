@@ -1,1 +1,1 @@
-export type { CardDataType } from '@/state/card-setting';
+export type { DragCardDataType, DropAreaDataType } from './dnd-setting.type';
