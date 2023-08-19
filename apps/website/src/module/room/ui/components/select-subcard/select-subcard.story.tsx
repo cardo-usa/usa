@@ -15,6 +15,5 @@ export const Default: Story = {
     subcard: [-2, -1, 0, 1, 2, 3],
     closeSetter: () => {},
     closeValue: false,
-    selectEvent: () => {},
   },
 };
