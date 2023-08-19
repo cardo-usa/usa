@@ -253,6 +253,9 @@ jobs:
       - name: install
         run: pnpm install --frozen-lockfile
 
+      - name: generate
+        run: pnpm turbo run generate --filter @usa/website
+
       - name: publish
         uses: chromaui/action@v1
         with:
