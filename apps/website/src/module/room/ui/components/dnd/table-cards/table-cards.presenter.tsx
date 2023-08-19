@@ -37,15 +37,24 @@ const TableCards: FC<Props> = ({ cards }) => {
       )}
       ref={setNodeRef}
     >
-      {cards.map((card) => (
-        <>
-          {card.type === 'number' && <NumberCard color={card.color} number={card.value} className="h-72 w-48" key={card.id} />}
-          {card.type === 'skip' && <SkipCard color={card.color} key={card.id} className="h-72 w-48" />}
-          {card.type === 'reverse' && <ReverseCard color={card.color} key={card.id} className="h-72 w-48" />}
-          {card.type === 'draw' && <DrawCard color={card.color} key={card.id} className="h-72 w-48" />}
-          {card.type === 'wild' && <WildCard color={card.color} key={card.id} className="h-72 w-48" />}
-        </>
-      ))}
+      {cards.map((card) => {
+        if (card.type === 'number') {
+          return <NumberCard color={card.color} number={card.value} className="h-72 w-48" key={card.id} />;
+        }
+        if (card.type === 'skip') {
+          return <SkipCard color={card.color} key={card.id} className="h-72 w-48" />;
+        }
+        if (card.type === 'reverse') {
+          return <ReverseCard color={card.color} key={card.id} className="h-72 w-48" />;
+        }
+        if (card.type === 'draw') {
+          return <DrawCard color={card.color} key={card.id} className="h-72 w-48" />;
+        }
+        if (card.type === 'wild') {
+          return <WildCard color={card.color} key={card.id} className="h-72 w-48" />;
+        }
+        return null;
+      })}
     </div>
   );
 };
