@@ -5,6 +5,7 @@ query FindUser($where: UserWhereUniqueInput!) {
       color
       number
       type
+      id
     }
     iconBackgroundColor
     iconEmoji

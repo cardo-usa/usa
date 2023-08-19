@@ -7,6 +7,7 @@ subscription UpdatedRoom($where: RoomWhereUniqueInput!) {
         color
         number
         type
+        id
       }
       iconBackgroundColor
       iconEmoji
@@ -20,11 +21,13 @@ subscription UpdatedRoom($where: RoomWhereUniqueInput!) {
       color
       number
       type
+      id
     }
     fieldCards {
       color
       number
       type
+      id
     }
     gameState
     id
