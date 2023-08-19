@@ -1,0 +1,9 @@
+query GetResult($where: RoomWhereUniqueInput!) {
+  getResult(where: $where) {
+    iconEmoji
+    iconBackgroundColor
+    id
+    name
+    role
+  }
+}
