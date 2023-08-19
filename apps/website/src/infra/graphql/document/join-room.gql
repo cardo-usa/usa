@@ -1,12 +1,5 @@
 mutation JoinRoom($data: UserAccountSettingInput!, $where: RoomWhereUniqueInput!) {
   joinRoom(data: $data, where: $where) {
     id
-    handCards {
-      color
-      number
-      type
-    }
-    isMyTurn
-    role
   }
 }
