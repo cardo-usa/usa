@@ -8,4 +8,8 @@ type DragCardDataType =
       isDeck: false;
     } & CardDataType);
 
-export type { DragCardDataType };
+type DropAreaDataType = {
+  id: string;
+};
+
+export type { DragCardDataType, DropAreaDataType };
