@@ -1,7 +1,7 @@
 'use client';
 
 import { DndContext } from '@dnd-kit/core';
-import { useMutation, useQuery } from '@urql/next';
+import { useMutation } from '@urql/next';
 import { type Route } from 'next';
 import { useRouter } from 'next/navigation';
 import { useEffect, type FC, useState } from 'react';
@@ -27,7 +27,6 @@ import {
   InitializeGameDocument,
   DrawCardFromDeckCardsDocument,
   PutHandCardToFieldCardsDocument,
-  GetResultDocument,
   type JoinRoomMutation,
   type JoinRoomMutationVariables,
   type UpdateRoomGameStateMutation,
@@ -38,8 +37,6 @@ import {
   type DrawCardFromDeckCardsMutationVariables,
   type PutHandCardToFieldCardsMutation,
   type PutHandCardToFieldCardsMutationVariables,
-  type GetResultQuery,
-  type GetResultQueryVariables,
 } from '#/src/infra/graphql/generated/graphql';
 import { useAccountIdSettingState } from '#/src/state/account-setting/account-setting.hook';
 import { C2SBackgroundColor } from '#/src/state/client-to-server-data';
@@ -60,10 +57,6 @@ export const Integrate: FC<Props> = ({ roomId }) => {
   const [, setStartGame] = useMutation<InitializeGameMutation, InitializeGameMutationVariables>(InitializeGameDocument);
   const [, setDrawCard] = useMutation<DrawCardFromDeckCardsMutation, DrawCardFromDeckCardsMutationVariables>(DrawCardFromDeckCardsDocument);
   const [, setPutCard] = useMutation<PutHandCardToFieldCardsMutation, PutHandCardToFieldCardsMutationVariables>(PutHandCardToFieldCardsDocument);
-  const [{ data: resultData }, getResult] = useQuery<GetResultQuery, GetResultQueryVariables>({
-    query: GetResultDocument,
-    variables: { where: { id: roomId } },
-  });
 
   const [openSelectSubCard, setOpenSelectSubCard] = useState(false);
   const [selectSubCardEventData, setSelectSubCardEventData] = useState<{ handCardId: string; accountId: string }>({ accountId: '', handCardId: '' });
@@ -302,24 +295,7 @@ export const Integrate: FC<Props> = ({ roomId }) => {
   }
 
   if (roomStatus.gameState === RoomGameState.Finished) {
-    getResult();
-    if (resultData === undefined) {
-      return (
-        <div className="flex h-screen w-screen items-center justify-center text-6xl font-bold text-slate-11">
-          <p>読み込み中...</p>
-        </div>
-      );
-    }
-    return (
-      <Result
-        resultData={resultData.getResult.map((r) => ({
-          name: r.name,
-          iconBackgroundColor: S2CBackgroundColor[r.iconBackgroundColor],
-          iconEmoji: r.iconEmoji,
-        }))}
-        closeButtonEvent={() => router.push('/' as Route)}
-      />
-    );
+    return <Result roomId={roomId} closeButtonEvent={() => router.push('/' as Route)} />;
   }
 
   return <div>{JSON.stringify(roomStatus)}</div>;
