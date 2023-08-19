@@ -35,12 +35,15 @@ const useRoomStatus = ({ roomId }: Props) => {
     if (updatedResult.error) {
       return undefined;
     }
-    if (initialResult.data !== undefined) {
-      return initialResult.data.findRoom;
-    }
     if (updatedResult.data !== undefined) {
+      console.log('update');
       return updatedResult.data.updatedRoom;
     }
+    if (initialResult.data !== undefined) {
+      console.log('init');
+      return initialResult.data.findRoom;
+    }
+
     return undefined;
   }, [initialResult, updatedResult]);
 
