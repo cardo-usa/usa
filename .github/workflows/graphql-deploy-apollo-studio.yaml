@@ -21,7 +21,7 @@ jobs:
       graphql: ${{ steps.changes.outputs.graphql }}
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: check for file changes
         uses: dorny/paths-filter@v2
@@ -38,7 +38,7 @@ jobs:
     if: needs.filter.outputs.graphql == 'true'
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: setup mongodb
         uses: supercharge/mongodb-github-action@v1
