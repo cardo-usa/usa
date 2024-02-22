@@ -57,7 +57,7 @@ jobs:
         run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: cache pnpm dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.pnpm-env.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -85,7 +85,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -116,7 +116,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -147,7 +147,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -178,7 +178,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -209,7 +209,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -244,7 +244,7 @@ jobs:
           run_install: false
 
       - name: restore pnpm dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: ${{ needs.install.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-dependencies-${{ hashFiles('**/pnpm-lock.yaml') }}
