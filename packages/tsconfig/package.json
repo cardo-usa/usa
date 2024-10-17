@@ -11,11 +11,11 @@
     "fmt:fix": "prettier --write ."
   },
   "devDependencies": {
-    "@tsconfig/create-react-app": "2.0.1",
-    "@tsconfig/esm": "1.0.4",
-    "@tsconfig/next": "2.0.0",
-    "@tsconfig/node-lts": "18.12.3",
-    "@tsconfig/strictest": "2.0.1",
+    "@tsconfig/create-react-app": "2.0.5",
+    "@tsconfig/esm": "1.0.5",
+    "@tsconfig/next": "2.0.3",
+    "@tsconfig/node-lts": "18.12.5",
+    "@tsconfig/strictest": "2.0.5",
     "@usa/prettier": "workspace:*",
     "eslint-config-usa-base": "workspace:*"
   }
