@@ -42,7 +42,7 @@
     "@usa/prettier": "workspace:*",
     "@usa/stylelint": "workspace:*",
     "@usa/tsconfig": "workspace:*",
-    "chromatic": "6.22.0",
+    "chromatic": "16.10.1",
     "eslint-config-usa-nextjs": "workspace:*",
     "storybook": "7.3.2"
   }
