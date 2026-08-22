@@ -15,14 +15,14 @@
     "test": "jest --silent=false --verbose false --passWithNoTests"
   },
   "dependencies": {
-    "dotenv": "16.3.1"
+    "dotenv": "16.6.1"
   },
   "devDependencies": {
     "@usa/jest": "workspace:*",
     "@usa/prettier": "workspace:*",
     "@usa/tsconfig": "workspace:*",
-    "add": "2.0.6",
+    "add": "2.0.9",
     "eslint-config-usa-esm": "workspace:*",
-    "ts-essentials": "9.3.2"
+    "ts-essentials": "9.4.2"
   }
 }
