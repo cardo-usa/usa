@@ -21,7 +21,7 @@
     "website": "pnpm --filter @usa/website"
   },
   "devDependencies": {
-    "@types/eslint": "8.44.2",
+    "@types/eslint": "9.6.1",
     "@types/jest": "29.5.3",
     "@types/node": "20.5.1",
     "cross-env": "7.0.3",
